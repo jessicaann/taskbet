@@ -1,0 +1,3 @@
+{"_id": {"$oid":"59074c7c057aaffaafb0da65"}, "task": "do the dishes", "dueDate":"2011-05-24T00:00:00.000Z", "reward": "dinner on me", "details": null, "challenger": null, "acceptor": null, "status": "inactive", "verification": null}
+{"_id": {"$oid":"59074c7c057aaffaafb0da66"}, "task": "rake the yard", "dueDate":"2011-06-24T00:00:00.000Z", "reward": "a pedicure", "details": null, "challenger": null, "acceptor": null, "status": "inactive", "verification": null}
+{"_id": {"$oid":"59074c7c057aaffaafb0da67"}, "task": "unpack our suitcases", "dueDate":"2011-07-24T00:00:00.000Z", "reward": "a pedicure", "details": "Everything has to be put away to win.", "challenger": null, "acceptor": null, "status": "inactive", "verification": null}

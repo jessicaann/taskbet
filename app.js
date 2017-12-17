@@ -4,7 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const {DATABASE_URL, PORT} = require('./config');
 
+mongoose.Promise = global.Promise;
+
+//UPDATE FOR MY ROUTERS
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -22,8 +27,36 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//UPDATE with MY ROUTERS AND ENDPOINTS
 app.use('/', index);
 app.use('/users', users);
+
+var server;
+
+function runServer(port=PORT, db=DATABASE_URL) {
+    return new Promise((resolve, reject) => {
+        mongoose.connect(db, err => {
+            if (err) {
+                return reject(err);
+            }
+            server = app.listen(port, () => {
+                console.log(`Your app is listening on port ${port}`);
+                resolve();
+            })
+            .on('error', err => {
+                mongoose.disconnect();
+                reject(err);
+            });
+        });
+    });
+}
+
+
+if(require.main === module){
+    runServer().catch(err => console.error(err));
+}
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,6 @@
+{"_id": {"$oid":"59074c7c057aaffaafb0da71"}, "firstname":"Scooby", "lastName":"Doo", "email":"scooby@test.com", "password": "1234", "bets":null}
+{"_id": {"$oid":"59074c7c057aaffaafb0da72"}, "firstname":"Fred", "lastName":"Jones", "email":"fred@test.com", "password":"1234", "bets":null}
+{"_id": {"$oid":"59074c7c057aaffaafb0da73"}, "firstname":"Shaggy", "lastName":"Rogers", "email":"shaggy@test.com", "password":"1234", "bets":null}
+{"_id": {"$oid":"59074c7c057aaffaafb0da74"}, "firstname":"Yabba", "lastName":"Doo", "email":"yabba@test.com", "password":"1234", "bets":null}
+{"_id": {"$oid":"59074c7c057aaffaafb0da75"}, "firstname":"Daphne", "lastName":"Blake", "email":"daphne@test.com", "password":"1234", "bets":null}
+{"_id": {"$oid":"59074c7c057aaffaafb0da76"}, "firstname":"Velma", "lastName":"Dinkley", "email":"velma@test.com", "password":"1234", "bets":null}
