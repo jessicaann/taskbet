@@ -5,7 +5,7 @@ const betSchema = mongoose.Schema({
     task: {type: String, required: true},
     dueDate: {type: Date, required: true},
     reward: {type: String, required: true},
-    details: {type: String},
+    details: String,
     challenger: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -16,9 +16,17 @@ const betSchema = mongoose.Schema({
         ref: 'User',
         required: true
     },
-    status: {type: String, required: true, },
+    status: {type: String, required: true},
     verification:{
-        photo: {type: String},
+        photo: String,
         sentDate: {type: Date, required: true}
     }
-}) 
+},
+{timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}}
+) 
+
+//I want to capture the dates of status changes...is that done with a virtual?
+
+const Bet = mongoose.model('Bet', betSchema);
+
+module.exports = {Bet};
