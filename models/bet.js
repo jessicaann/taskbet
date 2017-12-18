@@ -14,12 +14,17 @@ const betSchema = mongoose.Schema({
     acceptor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+    },
+    winner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     status: {type: String, required: true},
     verification:{
         photo: String,
-        sentDate: {type: Date, required: true}
+        sentDate: {type: Date, required: true},
+        comments: String
     }
 },
 {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}}

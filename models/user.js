@@ -5,11 +5,7 @@ const userSchema = mongoose.Schema({
     firstName: {type: String, required:  true},
     lastName: {type: String, required: true},
     email: {type: String, required: true},
-    password: String,
-    bets: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Bet'
-    }],
+    password: String
 }) 
 userSchema.virtual('fullName').get(function() {
     return `${this.firstName} ${this.lastName}`.trim()
@@ -27,12 +23,3 @@ userSchema.methods.serialize = function(){
 const User = mongoose.model('User', userSchema);
 
 module.exports = {User};
-
-/*Properties of bets I'd like to create
-{
-    won: Number,
-    accepted: Number,
-    challenged: Number,
-    totalEngaged: Number,
-    lost: Number
-} */
