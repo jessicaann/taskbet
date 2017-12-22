@@ -16,7 +16,6 @@ userSchema.methods.serialize = function(){
         email: this.email,
         firstName: this.firstName,
         fullName: this.fullName,
-        bets: this.bets
     };
 }
 
