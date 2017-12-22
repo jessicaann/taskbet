@@ -11,7 +11,7 @@ const betSchema = mongoose.Schema({
         ref: 'User',
         required: true
     },
-    acceptor: {
+    accepter: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
@@ -30,7 +30,23 @@ const betSchema = mongoose.Schema({
 {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}}
 ) 
 
-//I want to capture the dates of status changes...is that done with a virtual?
+betSchema.methods.serialize = function(){
+    return {
+        task: this.task,
+        dueDate: this.dueDate,
+        reward: this.reward,
+        details: this.details,
+        challenger: this.challenger,
+        accepter: this.accepter,
+        winner: this.winner,
+        status: this.status,
+        verification:{
+            photo: this.photo,
+            sentDate: this.sentDate,
+            comments: this.comments
+        }
+    };
+}
 
 const Bet = mongoose.model('Bet', betSchema);
 

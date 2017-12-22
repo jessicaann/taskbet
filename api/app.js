@@ -12,7 +12,7 @@ mongoose.Promise = global.Promise;
 //UPDATE FOR MY ROUTERS
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var bets = require('./routes/bets');
 var app = express();
 
 // uncomment after placing your favicon in /public
@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //UPDATE with MY ROUTERS AND ENDPOINTS
 app.use('/', index);
 app.use('/users', users);
+app.use('/bets', bets);
 
 var server;
 

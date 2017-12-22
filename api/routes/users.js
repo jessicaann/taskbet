@@ -129,13 +129,32 @@ router.get('/:id/bets', (req, res) => {
         res.status(500).json({message: 'Internal server error'})
     });
 });
-
+//Get Bets Challenged
+router.get('/:id/bets', (req, res) => {
+    const challengedBets = Bet.find( {challenger: req.params.id} );
+    challengedBets.exec()
+    .then(bets => {
+        res.json( bets.map(bet => bet.serialize()) );
+    })//do I want a list of them to be returned or just the number of them?
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({message: 'Internal server error'})
+    });
+});
+//Get Bets Accepted
+router.get('/:id/bets', (req, res) => {
+    const acceptedBets = Bet.find( {accepter: req.params.id} );
+    acceptedBets.exec()
+    .then(bets => {
+        res.json( bets.map(bet => bet.serialize()) );
+    })//do I want a list of them to be returned or just the number of them?
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({message: 'Internal server error'})
+    });
+});
 //export the router
 module.exports = router;
 /*
-bets lost
-bets won
-bets as challenger
-bets as accepter
 - still do a session, then JWT is encoding what we send from the client to the server
 */
