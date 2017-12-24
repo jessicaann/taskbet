@@ -19,11 +19,11 @@ router.post('/', jsonParser, (req, res) => {
     }
     Bet
     .create({
-        task: req.body.title,
-        dueDate: req.body.instructors,
-        reward: req.body.startTime,
-        details: req.body.endTime,
-        challenger: req.body.preWork,
+        task: req.body.task,
+        dueDate: req.body.dueDate,
+        reward: req.body.reward,
+        details: req.body.details,
+        challenger: req.body.challenger,
         accepter: req.body.accepter,
         status: req.body.status
     })

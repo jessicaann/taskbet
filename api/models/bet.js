@@ -23,7 +23,7 @@ const betSchema = mongoose.Schema({
     status: {type: String, required: true},
     verification:{
         photo: String,
-        sentDate: {type: Date, required: true},
+        sentDate: String,
         comments: String
     }
 },
@@ -32,6 +32,7 @@ const betSchema = mongoose.Schema({
 
 betSchema.methods.serialize = function(){
     return {
+        id: this._id,
         task: this.task,
         dueDate: this.dueDate,
         reward: this.reward,

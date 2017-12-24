@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
@@ -90,10 +91,19 @@ router.delete('/:id', (req, res) => {
 
 //Get the Total Bets of users
 router.get('/:id/bets', (req, res) => {
-    const totalBets = Bet.find( {$or: [ { challenger: req.params.id}, {accepter: req.params.id} ] } );
-    totalBets.exec()
-    .then(bets => {
-        res.json( bets.map(bet => bet.serialize()) );
+    const totalBets = Bet.find( {$or: [ { challenger: req.params.id}, {accepter: req.params.id} ] } ).exec();
+    const wonBets = Bet.find( {winner: req.params.id} ).exec();
+    const lostBets = Bet.find( 
+        { $and: [
+            {$or: [ { challenger: req.params.id}, {accepter: req.params.id} ] },
+            {winner: {$ne: req.params.id } }
+        ]} 
+    ).exec();
+    const challengedBets = Bet.find( {challenger: req.params.id} ).exec();
+    const acceptedBets = Bet.find( {accepter: req.params.id} ).exec();
+    Promise.all([totalBets, wonBets, lostBets, challengedBets, acceptedBets])
+    .then(betsCollection => {
+        res.json( betsCollection );
     })
     .catch(err => {
         console.error(err);
@@ -101,7 +111,7 @@ router.get('/:id/bets', (req, res) => {
     });
 });
 //Get Bets Won
-router.get('/:id/bets', (req, res) => {
+/*router.get('/:id/bets', (req, res) => {
     const wonBets = Bet.find( {winner: req.params.id} );
     wonBets.exec()
     .then(bets => {
@@ -153,6 +163,7 @@ router.get('/:id/bets', (req, res) => {
         res.status(500).json({message: 'Internal server error'})
     });
 });
+*/
 //export the router
 module.exports = router;
 /*
