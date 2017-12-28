@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-export const NavBar = (props) => {
+export default (props) => {
     return (
         <nav className="navbar" >
             <section className='navbar-section'>

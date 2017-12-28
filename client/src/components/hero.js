@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './Navbar';
+import Navbar from './navbar';
 
-export const Hero = (props) => {
+export default (props) => {
     return (
         <section className="hero" >
             <div>

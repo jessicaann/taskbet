@@ -1,2 +1,2 @@
 api: nodemon api/app.js
-client: cd src && yarn start
+client: cd client && yarn start

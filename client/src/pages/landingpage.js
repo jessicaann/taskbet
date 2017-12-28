@@ -22,12 +22,12 @@ export const LandingPage = (props) => {
                         </div>
                     </div>
                 </section>
-                <section className="demo">
-                    <div className="col-12">
-                        <div className="col-6">
+                <section className="demo column col-12">
+                    <div className="column col-12">
+                        <div className="column col-6">
                             <img src="" />
                         </div>
-                        <div className="col-6">
+                        <div className="column col-6">
                             <h3>It's easy.</h3>
                             <p>The first rule of TaskBet is to never talk about TaskBet.</p>
                             <p>Just kidding</p>
@@ -35,7 +35,7 @@ export const LandingPage = (props) => {
                             <p>Once the bet has been accepted, it's time to get cracking! You or your friend must complete the task at hand and submit photo evidence before the deadline.</p>
                             <p>Review the task's execution and then admit defeat or accept your winnings!</p>
                         </div>
-                        <div className="col-12">
+                        <div className="column col-12">
                             <button>Start Betting Now</button>
                         </div>
                     </div>

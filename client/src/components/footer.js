@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-export const NavBar = (props) => {
+export default (props) => {
     return (
         <footer className="footer" >
             <div className="container">
