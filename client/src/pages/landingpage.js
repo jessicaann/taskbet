@@ -8,24 +8,24 @@ export const LandingPage = (props) => {
     return (
         <div className="container grid-xlg">
             <div className="columns">
-                <Hero className="col-12" />
-                <section className="about">
-                    <div className="col-12">
-                        <div className="col-6">
+                <Hero />
+                <section className="about column col-12">
+                    <div className="row col-12">
+                        <div className="column col-6">
                             <h3>It's time to stop procrastinating and start earning.</h3>
                             <p>TaskBet helps you complete the pesky tasks that you don't want to do. </p>
                             <p>Live with a roommate? Bet them that the dishes will be done by tonight...or else dinner is on them.</p>
                             <h4>Reap the rewards.</h4>
                         </div>
-                        <div className="col-6">
-                            <img src="" />
+                        <div className="column col-6">
+                            <img src="https://picsum.photos/g/400/300" />
                         </div>
                     </div>
                 </section>
                 <section className="demo column col-12">
                     <div className="column col-12">
                         <div className="column col-6">
-                            <img src="" />
+                            <img src="https://picsum.photos/g/400/300" />
                         </div>
                         <div className="column col-6">
                             <h3>It's easy.</h3>
@@ -40,23 +40,23 @@ export const LandingPage = (props) => {
                         </div>
                     </div>
                 </section>
-                <section className="stats">
-                    <div className="col-12">
-                        <div className="col-6">
+                <section className="stats column col-12">
+                    <div className="column col-12">
+                        <div className="column col-6">
                             <h3>Keep track of your stats.</h3>
                             <p>Check out your handy-dandy dashboard to see how you measure up to your friends.</p>
                             <p>Maybe don't bet on doing the dishes if you aren't going to...</p>
                         </div>
-                        <div className="col-6">
-                            <img src="" />
+                        <div className="column col-6">
+                            <img src="https://picsum.photos/g/400/300" />
                         </div>
-                        <div className="col-12">
+                        <div className="column col-12">
                             <button>Start Betting Now</button>
                         </div>
                     </div>
                 </section>
-                <section className="join">
-                    <div className="col-12">
+                <section className="join column col-12">
+                    <div className="column col-12">
                         <button>Start Betting Now</button>
                     </div>
                 </section>

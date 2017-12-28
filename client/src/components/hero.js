@@ -3,7 +3,7 @@ import Navbar from './navbar';
 
 export default (props) => {
     return (
-        <section className="hero" >
+        <section className="hero column col-12" >
             <div>
                 <Navbar />
             </div>
