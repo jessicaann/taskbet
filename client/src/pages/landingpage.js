@@ -6,7 +6,7 @@ import Footer from '../components/footer';
 
 export const LandingPage = (props) => {
     return (
-        <div className="container grid-xlg">
+        <div className="container grid-xl">
             <div className="columns">
                 <Hero />
                 <section className="about column col-12">

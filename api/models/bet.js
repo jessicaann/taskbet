@@ -11,7 +11,7 @@ const betSchema = mongoose.Schema({
         ref: 'User',
         required: true
     },
-    accepter: {
+    acceptor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
@@ -38,7 +38,7 @@ betSchema.methods.serialize = function(){
         reward: this.reward,
         details: this.details,
         challenger: this.challenger,
-        accepter: this.accepter,
+        acceptor: this.acceptor,
         winner: this.winner,
         status: this.status,
         verification:{

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 export default (props) => {
     return (
-        <nav className="navbar" >
+        <nav className="navbar col-12 column" >
             <section className='navbar-section'>
                 <Link to='/'>
                     <img className="taskbet-logo-navbar" src="" />
