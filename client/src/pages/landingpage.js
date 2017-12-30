@@ -10,7 +10,7 @@ export const LandingPage = (props) => {
             <div className="columns">
                 <Hero />
                 <section className="about column col-12">
-                    <div className="row col-12">
+                    <div className="columns">
                         <div className="column col-6">
                             <h3>It's time to stop procrastinating and start earning.</h3>
                             <p>TaskBet helps you complete the pesky tasks that you don't want to do. </p>
@@ -23,7 +23,7 @@ export const LandingPage = (props) => {
                     </div>
                 </section>
                 <section className="demo column col-12">
-                    <div className="column col-12">
+                    <div className="columns">
                         <div className="column col-6">
                             <img src="https://picsum.photos/g/400/300" />
                         </div>
@@ -41,7 +41,7 @@ export const LandingPage = (props) => {
                     </div>
                 </section>
                 <section className="stats column col-12">
-                    <div className="column col-12">
+                    <div className="columns">
                         <div className="column col-6">
                             <h3>Keep track of your stats.</h3>
                             <p>Check out your handy-dandy dashboard to see how you measure up to your friends.</p>
@@ -56,7 +56,7 @@ export const LandingPage = (props) => {
                     </div>
                 </section>
                 <section className="join column col-12">
-                    <div className="column col-12">
+                    <div className="columns">
                         <button>Start Betting Now</button>
                     </div>
                 </section>
