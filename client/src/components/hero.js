@@ -1,10 +1,10 @@
 import React from 'react';
 import Navbar from './navbar';
-/*import '../component_styles/hero.css';*/
-
+import '../component_styles/hero.css';
+//when i use a stylesheet, spectre stops working
 export default (props) => {
     return (
-        <section className="hero column col-12" >
+        <section className="hero column body-img col-12" >
             <div>
                 <Navbar />
             </div>
