@@ -13,16 +13,35 @@ export const NewBet = (props) => {
             <h1>Got an unwanted task? Bet on it and get 'er done!</h1>
             <form className="form-horizontal">
                 <div className="columns">
-                    <div className="column col-12">
+                    <div className="column col-12"style={{display: 'inline'}}>
                         <div className="">I bet&nbsp;
-                            <div className="col-9">
-                                <input className="form-input" type={type} name={inputName} placeholder={placeholder}/>
+                            <div className="column col-3" style={{display: 'inline'}}>
+                                <input style={{display: 'inline'}} className="form-input col-3" type='text' name='acceptorName' placeholder='Bob'/>
                             </div>
                         </div>
                     </div>
                     <div className="column col-12">
-                        <div className="">that&nbsp;
-                            <SelectInput selectName={'Who is doing the work?'} options={['you', 'I']} />
+                        <div className="">
+                            that&nbsp;
+                            <SelectInput selectName={'Who is doing the work?'} options={['you', 'I']} />&nbsp;will&nbsp;
+                            <span class="chip">not
+                                <a href="#" class="btn btn-clear" aria-label="Close" role="button"></a>
+                            </span>
+                        </div>
+                    </div>
+                    <div className="column col-12">
+                        <div class="form-autocomplete">
+                            <div class="form-autocomplete-input form-input col-6 col-mx-auto">
+                                <input class="form-input" type="text" placeholder="Describe the task here - i.e. &quot;wash the dishes&quot;"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="column col-12">
+                        <div className="">
+                            by&nbsp;
+                            <div className="column col-3" style={{display: 'inline'}}>
+                                <input style={{display: 'inline'}} className="form-input col-3" type='date' name='dueDate' placeholder='12/31/2018'/>
+                            </div>
                         </div>
                     </div>
                 </div>
