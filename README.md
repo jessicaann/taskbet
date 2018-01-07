@@ -1,4 +1,4 @@
-[![catlogo5](https://cloud.githubusercontent.com/assets/25944411/26743052/54b724d2-47ae-11e7-9e1e-b0e6268aadfe.png)](https://lit-savannah-21161.herokuapp.com/)
+[![catlogo5](taskbet.png)](https://lit-savannah-21161.herokuapp.com/)
 ## Why TaskBet
 It's a fact - everyone's got a task that they don't want to do. Sometimes, you need the extra push to complete it. Has your mom ever said "I'd pay you to get your room clean!". Or has your partner ever remarked "I'd pay anything to never have to wash a dish again!". This is the app that helps you and your friends push each other to complete those pesky tasks by betting on them.
 
