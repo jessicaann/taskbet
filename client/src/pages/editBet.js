@@ -1,7 +1,7 @@
 import React from 'react';
 //import components
-import Footer from '../components/footer';
-import NavBar from '../components/navbar';
+import Footer from '../components/footer/footer';
+import NavBar from '../components/navbar/navbar';
 import Input from '../components/input';
 import TextArea from '../components/textarea';
 

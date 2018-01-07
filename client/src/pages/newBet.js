@@ -1,9 +1,7 @@
 import React from 'react';
 //import components
-import Footer from '../components/footer';
-import NavBar from '../components/navbar';
-import Input from '../components/input';
-import TextArea from '../components/textarea';
+import Footer from '../components/footer/footer';
+import NavBar from '../components/navbar/navbar';
 import SelectInput from '../components/selectInput';
 
 export const NewBet = (props) => {
@@ -44,8 +42,30 @@ export const NewBet = (props) => {
                             </div>
                         </div>
                     </div>
+                    <div className="column col-12" style={{display: 'inline'}}>
+                        <div className="">If I win this TaskBet,&nbsp;
+                            <div className="column col-3" style={{display: 'inline'}}>
+                                <input style={{display: 'inline'}} className="form-input col-3" type='text' name='acceptorName' placeholder='Auto Complete Acceptor Name - Bob'/>
+                            </div>has to&nbsp;
+                            <div className="column col-3" style={{display: 'inline'}}>
+                                <input style={{display: 'inline'}} className="form-input col-3" type='text' name='reward' placeholder='buy me dinner'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="column col-12" style={{display: 'inline'}}>
+                        <div className="">Send the bet to:&nbsp;
+                            <div className="column col-3" style={{display: 'inline'}}>
+                                <input style={{display: 'inline'}} className="form-input col-3" type='email' name='acceptorEmail' placeholder='bob@bob.com'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="btn-group btn-group-block">
+                        <button className="btn btn-success" type="submit">Bet on it</button>
+                        <button className="btn btn-error">Cancel</button>
+                    </div>
                 </div>
             </form>
+            <Footer />
         </div>
     );
 };
@@ -55,3 +75,4 @@ export const NewBet = (props) => {
 // by (due date).
 //If I win this bet, (person's name (complete)) must (reward {autocomplete/text-input}).
 //Who are we sending this wager to? Email address and last name
+//wrap each question in a hero to make it move like typeform.

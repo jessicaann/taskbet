@@ -5,14 +5,21 @@ export default (props) => {
     const placeholder= props.placeholder;
     const inputName = props.inputName;
     const type = props.type;
-    return(
+
+
+    let content = null;
+    if(labelName) {
+        content = 
         <div className="form-group">
-            <div className="col-3">
+            <div className={`col-${labelCol}`}>
                 <label className="form-label">{labelName}</label>
             </div>
-            <div className="col-9">
+            <div className={`col-${inputCol}`}>
                 <input className="form-input" type={type} name={inputName} placeholder={placeholder}/>
             </div>
-        </div>
+        </div>;{`col-${inputCol}`}{`col-${inputCol}`}
+    }
+    return(
+        {content}
     );
 };

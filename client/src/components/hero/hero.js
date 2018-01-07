@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './navbar';
-import '../component_styles/hero.css';
+import Navbar from '../navbar/navbar';
+import './hero.css';
 //when i use a stylesheet, spectre stops working
 export default (props) => {
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 //import components
-import Hero from '../components/hero';
+import Hero from '../components/hero/hero';
 import Footer from '../components/footer';
 
 export const LandingPage = (props) => {
