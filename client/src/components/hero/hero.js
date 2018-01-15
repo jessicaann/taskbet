@@ -4,14 +4,14 @@ import './hero.css';
 //when i use a stylesheet, spectre stops working
 export default (props) => {
     return (
-        <section className="hero column body-img col-12" >
-            <div>
-                <Navbar />
-            </div>
-            <div>
+        <div>
+            <Navbar />
+            <section className="hero body-img" >
                 <h1 className="title">Taskbet</h1>
                 <h2 className="subtitle">Make bets with your friends.</h2>
-            </div>
-        </section>
+            </section>
+        </div>
     );
 };
+
+//IN EACH PAGE, SET A CONTAINER - THEN EACH COMPONENT CAN BE A ROW
