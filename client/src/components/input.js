@@ -20,7 +20,7 @@ export default (props) => {
     }
     else{
         content =
-        <div className="form-group row">
+        <div className="form-group  row">
             <div className={`col-${inputCol}`}>
                 <input className="form-control" type={type} name={inputName} placeholder={placeholder}/>
             </div>

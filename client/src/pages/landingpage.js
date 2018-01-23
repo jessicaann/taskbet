@@ -6,7 +6,7 @@ import Footer from '../components/footer/footer';
 
 export const LandingPage = (props) => {
     return (
-        <div>
+        <div className="wrapper">
             <Hero />
             <div className="container">
                 <section className="about row">
@@ -48,8 +48,8 @@ export const LandingPage = (props) => {
                         <button>Start Betting Now</button>
                     </div>
                 </section>
-                <Footer />
             </div>
+            <Footer />
         </div>
     );
 };

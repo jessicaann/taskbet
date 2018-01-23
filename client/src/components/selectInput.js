@@ -8,7 +8,7 @@ export default (props) => {
         );
     });
     return (
-        <select name={selectName}>
+        <select className="col" name={selectName}>
             {options}
         </select>
     );

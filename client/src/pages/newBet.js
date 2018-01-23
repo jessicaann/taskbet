@@ -3,76 +3,71 @@ import React from 'react';
 import Footer from '../components/footer/footer';
 import NavBar from '../components/navbar/navbar';
 import SelectInput from '../components/selectInput';
+import Input from '../components/input';
 
-export const NewBet = (props) => {
-    return (
-        <div className="container grid-xl">
-            <NavBar />
-            <h1>Got an unwanted task? Bet on it and get 'er done!</h1>
-            <form className="form-horizontal">
-                <div className="columns">
-                    <div className="column col-12"style={{display: 'inline'}}>
-                        <div className="">I bet&nbsp;
-                            <div className="column col-3" style={{display: 'inline'}}>
-                                <input style={{display: 'inline'}} className="form-input col-3" type='text' name='acceptorName' placeholder='Bob'/>
+export class NewBet extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            acceptorName: null,
+            youOrI: null,
+            willOrWillNot: null,
+            taskName: null,
+            dueDate: null,
+            reward: null,
+            acceptorEmail: null
+        };
+    }
+    inputChange(event, name){
+        console.log(event.currentTarget.value, name);
+        this.setState({
+            [name]: event.currentTarget.value
+        });
+    }
+    selectChange(event, name){
+        console.log(event.currentTarget.value, name);
+        this.setState({
+            [name]: event.currentTarget.value
+        });
+    }
+    createBet(event){
+        event.preventDefault();
+        console.log(this.state);
+    }
+    render() {
+        return (
+            <div className="wrapper">
+                <NavBar />
+                <div className="container">
+                    <h1>Got an unwanted task?</h1>
+                    <h5>Bet on it and get 'er done!</h5>
+                    <form className="form-horizontal" onSubmit={event => this.createBet(event)}>
+                        <Input type={'text'} labelName={'I bet'}  labelCol='3' inputCol='9' inputName={'acceptor'} placeholder={'Bob Jenkins'} onChange={event => this.inputChange(event, 'acceptorName')}/>     
+                        <div className="form-group row">
+                            <label className= {'col-form-label col-3'}>that</label>
+                            <SelectInput selectName={'youOrI'} options={['you', 'I']} onChange={event => this.selectChange(event, 'youOrI')}/>
+                            <SelectInput selectName={'willOrWillNot'} options={['will', 'will not']} onChange={event => this.selectChange(event, 'willOrWillNot')}/>
+                        </div>
+                        <Input type={'text'} inputCol='12' inputName={'task'} placeholder={'Describe the task here - i.e. wash the dishes'} onChange={event => this.inputChange(event, 'taskName')}/>
+                        <Input type={'date'} labelName={'by'}  labelCol='3' inputCol='9' inputName={'dueDate'} placeholder={'12/31/2018'} onChange={event => this.inputChange(event, 'dueDate')}/>
+                        <div className="form-group row">
+                            <div className='col'>
+                            If I win this TaskBet,
                             </div>
                         </div>
-                    </div>
-                    <div className="column col-12">
-                        <div className="">
-                            that&nbsp;
-                            <SelectInput selectName={'Who is doing the work?'} options={['you', 'I']} />&nbsp;will&nbsp;
-                            <span class="chip">not
-                                <a href="#" class="btn btn-clear" aria-label="Close" role="button"></a>
-                            </span>
+                        <Input type={'text'} inputCol='12' inputName={'acceptor'} placeholder={'Auto Complete Acceptor Name - Bob'} />   
+                        <Input type={'text'} labelName={'has to'}  labelCol='3' inputCol='9' inputName={'reward'} placeholder={'buy me dinner'} onChange={event => this.inputChange(event, 'reward')}/>
+                        <Input type={'email'} labelName={'Send the bet to:'}  labelCol='3' inputCol='9' inputName={'acceptorEmail'} placeholder={'bob@bob.com'} onChange={event => this.inputChange(event, 'acceptorEmail')}/>
+                        <div className="btn-group" role="group">
+                            <button className="btn btn-link">Cancel</button>
+                            <button className="btn btn-success" type="submit">Bet on it</button>
                         </div>
-                    </div>
-                    <div className="column col-12">
-                        <div class="form-autocomplete">
-                            <div class="form-autocomplete-input form-input col-6 col-mx-auto">
-                                <input class="form-input" type="text" placeholder="Describe the task here - i.e. &quot;wash the dishes&quot;"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="column col-12">
-                        <div className="">
-                            by&nbsp;
-                            <div className="column col-3" style={{display: 'inline'}}>
-                                <input style={{display: 'inline'}} className="form-input col-3" type='date' name='dueDate' placeholder='12/31/2018'/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="column col-12" style={{display: 'inline'}}>
-                        <div className="">If I win this TaskBet,&nbsp;
-                            <div className="column col-3" style={{display: 'inline'}}>
-                                <input style={{display: 'inline'}} className="form-input col-3" type='text' name='acceptorName' placeholder='Auto Complete Acceptor Name - Bob'/>
-                            </div>has to&nbsp;
-                            <div className="column col-3" style={{display: 'inline'}}>
-                                <input style={{display: 'inline'}} className="form-input col-3" type='text' name='reward' placeholder='buy me dinner'/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="column col-12" style={{display: 'inline'}}>
-                        <div className="">Send the bet to:&nbsp;
-                            <div className="column col-3" style={{display: 'inline'}}>
-                                <input style={{display: 'inline'}} className="form-input col-3" type='email' name='acceptorEmail' placeholder='bob@bob.com'/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="btn-group btn-group-block">
-                        <button className="btn btn-success" type="submit">Bet on it</button>
-                        <button className="btn btn-error">Cancel</button>
-                    </div>
+                    </form>
                 </div>
-            </form>
-            <Footer />
-        </div>
-    );
-};
+                <Footer />
+            </div>        );
+    }
+}
 
-//I bet (person’s name {text input}) 
-//that (I/you {dropdown}) will (not {dropdown}) (action form of task {autocomplete/text-input})
-// by (due date).
-//If I win this bet, (person's name (complete)) must (reward {autocomplete/text-input}).
-//Who are we sending this wager to? Email address and last name
+
 //wrap each question in a hero to make it move like typeform.
