@@ -8,13 +8,15 @@ export default (props) => {
     const labelCol = props.labelCol;
     const inputCol = props.inputCol;
 
+    //const { labelName, } = this.props;
+
     let content = null;
     if(labelName) {
         content = 
         <div className="form-group row">
             <label className= {`col-form-label col-${labelCol}`}>{labelName}</label>
             <div className={`col-${inputCol}`}>
-                <input className="form-control" type={type} name={inputName} placeholder={placeholder}/>
+                <input className="form-control" type={type} name={inputName} placeholder={placeholder} onChange={props.onChange}/>
             </div>
         </div>;
     }
