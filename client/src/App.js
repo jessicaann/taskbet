@@ -13,7 +13,7 @@ export default class App extends Component {
             <Router>
                 <div className="App">
                     <Route exact path="/" component={LandingPage} />
-                    <Route exact path="/bets/:id" component={EditBet} />
+                    <Route exact path="/bets/:id" component={EditBet}/>
                     <Route exact path="/bets" component={NewBet} />
 
                 </div>

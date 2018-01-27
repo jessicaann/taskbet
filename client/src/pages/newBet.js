@@ -5,6 +5,7 @@ import NavBar from '../components/navbar/navbar';
 import SelectInput from '../components/selectInput';
 import Input from '../components/input';
 
+//add the new select options to edit bet and to the database
 export class NewBet extends React.Component {
     constructor(props) {
         super(props);

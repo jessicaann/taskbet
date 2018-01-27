@@ -1,14 +1,7 @@
 import React from 'react';
 
 export default (props) => {
-    const labelName = props.labelName;
-    const placeholder= props.placeholder;
-    const inputName = props.inputName;
-    const type = props.type;
-    const labelCol = props.labelCol;
-    const inputCol = props.inputCol;
-
-    //const { labelName, } = this.props;
+    const { labelName, placeholder, inputName, type, labelCol, inputCol, onChange} = props;
 
     let content = null;
     if(labelName) {
@@ -16,7 +9,7 @@ export default (props) => {
         <div className="form-group row">
             <label className= {`col-form-label col-${labelCol}`}>{labelName}</label>
             <div className={`col-${inputCol}`}>
-                <input className="form-control" type={type} name={inputName} placeholder={placeholder} onChange={props.onChange}/>
+                <input className="form-control" type={type} name={inputName} placeholder={placeholder} onChange={onChange}/>
             </div>
         </div>;
     }
