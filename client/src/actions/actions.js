@@ -12,7 +12,7 @@ export const createNewBet = formData => dispatch => {
         }
     }).then(res => {
         if(!res.ok){
-            return createBetError('There was an error in the request'); //response is not okay, there is no response
+            return createBetError('There was an error in the request');
         }
         return res.json();
     }).then(data => dispatch(createBetSuccess(data)))
@@ -188,6 +188,24 @@ export const GET_BETS_WON_ID_SUCCESS = 'GET_BETS_WON_ID_SUCCESS';
 export const getBetsWonIdError = error => ({type: GET_BETS_WON_ID_ERROR, error});
 export const getBetsWonIdSuccess= data => ({type: GET_BETS_WON_ID_SUCCESS, data});
 
+//GET BETS LOST BY USER ID
+export const GET_BETS_LOST_ID = 'GET_BETS_LOST_ID';
+export const getBetsLostId = userId => dispatch => {
+    dispatch({type: GET_BETS_LOST_ID});
+    fetch(`${BASE_URL}/${userId}/bets`)
+        .then(res => {
+            if(!res.ok){
+                return getBetsLostIdError('There was an error in the request'); 
+            }
+            return res.json();
+        }).then(data => dispatch(getBetsLostIdSuccess(data)))
+        .catch(err => dispatch(getBetsLostIdError(err)));
+};
+export const GET_BETS_LOST_ID_ERROR = 'GET_BETS_LOST_ID_ERROR';
+export const GET_BETS_LOST_ID_SUCCESS = 'GET_BETS_LOST_ID_SUCCESS';
+export const getBetsLostIdError = error => ({type: GET_BETS_LOST_ID_ERROR, error});
+export const getBetsLostIdSuccess= data => ({type: GET_BETS_LOST_ID_SUCCESS, data});
+
 //GET BETS ACCEPTED BY USER ID
 export const GET_BETS_ACCEPTED_ID = 'GET_BETS_ACCEPTED_ID';
 export const getBetsAcceptedId = userId => dispatch => {
@@ -205,3 +223,58 @@ export const GET_BETS_ACCEPTED_ID_ERROR = 'GET_BETS_ACCEPTED_ID_ERROR';
 export const GET_BETS_ACCEPTED_ID_SUCCESS = 'GET_BETS_ACCEPTED_ID_SUCCESS';
 export const getBetsAcceptedIdError = error => ({type: GET_BETS_ACCEPTED_ID_ERROR, error});
 export const getBetsAcceptedIdSuccess= data => ({type: GET_BETS_ACCEPTED_ID_SUCCESS, data});
+
+//GET BETS CHALLENGED BY USER ID
+export const GET_BETS_CHALLENGED_ID = 'GET_BETS_CHALLENGED_ID';
+export const getBetsChallengedId = userId => dispatch => {
+    dispatch({type: GET_BETS_CHALLENGED_ID});
+    fetch(`${BASE_URL}/${userId}/bets`)
+        .then(res => {
+            if(!res.ok){
+                return getBetsChallengedIdError('There was an error in the request'); 
+            }
+            return res.json();
+        }).then(data => dispatch(getBetsChallengedIdSuccess(data)))
+        .catch(err => dispatch(getBetsChallengedIdError(err)));
+};
+export const GET_BETS_CHALLENGED_ID_ERROR = 'GET_BETS_CHALLENGED_ID_ERROR';
+export const GET_BETS_CHALLENGED_ID_SUCCESS = 'GET_BETS_CHALLENGED_ID_SUCCESS';
+export const getBetsChallengedIdError = error => ({type: GET_BETS_CHALLENGED_ID_ERROR, error});
+export const getBetsChallengedIdSuccess= data => ({type: GET_BETS_CHALLENGED_ID_SUCCESS, data});
+
+//CREATE NEW SESSION, POST
+export const CREATE_NEW_SESSION = 'CREATE_NEW_SESSION';
+export const createNewSession = formData => dispatch => {
+    dispatch({type: CREATE_NEW_SESSION});
+    fetch(`${BASE_URL}/session`, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
+        if(!res.ok){
+            return createNewSessionError('There was an error in the request'); 
+        }
+        return res.json();
+    }).then(data => dispatch(createNewSessionSuccess(data)))
+        .catch(err => dispatch(createNewSessionError(err)));
+};
+export const CREATE_NEW_SESSION_SUCCESS = 'CREATE_NEW_SESSION_SUCCESS';
+export const CREATE_NEW_SESSION_ERROR = 'CREATE_NEW_SESSION_ERROR';
+export const createNewSessionError = error => ({type: CREATE_NEW_SESSION_ERROR, error});
+export const createNewSessionSuccess = data => ({type: CREATE_NEW_SESSION_SUCCESS, data});
+
+//DELETE SESSION
+export const DELETE_SESSION = 'DELETE_SESSION';
+export const deleteSession = dispatch => {
+    dispatch({type: DELETE_USER_ID});
+    fetch(`${BASE_URL}/session`, {
+        method: 'DELETE'
+    }).then(res => {
+        dispatch({type: DELETE_SESSION_SUCCESS});
+        return res.json();
+    });
+};
+export const DELETE_SESSION_SUCCESS = 'DELETE_SESSION_SUCCESS';
