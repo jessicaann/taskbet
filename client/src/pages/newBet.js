@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createNewBet } from '../actions/actions';
 //import components
 import Footer from '../components/footer/footer';
 import NavBar from '../components/navbar/navbar';
@@ -9,7 +11,7 @@ import Input from '../components/input';
 export class NewBet extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        const formData = {
             acceptorName: null,
             youOrI: null,
             willOrWillNot: null,
@@ -19,21 +21,29 @@ export class NewBet extends React.Component {
             acceptorEmail: null
         };
     }
+    setFormData(value, name){
+        const formData = {
+            acceptorName: null,
+            youOrI: null,
+            willOrWillNot: null,
+            taskName: null,
+            dueDate: null,
+            reward: null,
+            acceptorEmail: null
+        };
+        formData[name]= value;
+        return formData;
+    }
     inputChange(event, name){
-        console.log(event.currentTarget.value, name);
-        this.setState({
-            [name]: event.currentTarget.value
-        });
+        this.setFormData(event.currentTarget.value, name);
     }
     selectChange(event, name){
-        console.log(event.currentTarget.value, name);
-        this.setState({
-            [name]: event.currentTarget.value
-        });
+        this.setFormData(event.currentTarget.value, name);
     }
     createBet(event){
+        const formData = this.setFormData();
         event.preventDefault();
-        console.log(this.state);
+        this.props.dispatch(createNewBet(formData));
     }
     render() {
         return (
@@ -69,6 +79,8 @@ export class NewBet extends React.Component {
             </div>        );
     }
 }
+
+export default connect ()(NewBet);
 
 
 //wrap each question in a hero to make it move like typeform.
