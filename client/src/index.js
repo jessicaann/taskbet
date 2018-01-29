@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import {Provider} from 'react-redux';
-import store from './store.js';
+
+import {taskBetReducer} from './reducers/reducers';
+
+let store = createStore(taskBetReducer);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>, document.getElementById('root'));
+    <App store={store} />, 
+    document.getElementById('root'));
 registerServiceWorker();
