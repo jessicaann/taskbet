@@ -8,7 +8,7 @@ const {Bet} = require('../models/bet');
 
 //Create new bets
 router.post('/', jsonParser, (req, res) => {
-    const requiredFields = ['task', 'dueDate', 'reward', 'details', 'challenger', 'accepter', 'status'];
+    const requiredFields = ['task', 'dueDate', 'reward', 'details', 'challenger', 'acceptor', 'status'];
     for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -24,7 +24,7 @@ router.post('/', jsonParser, (req, res) => {
         reward: req.body.reward,
         details: req.body.details,
         challenger: req.body.challenger,
-        accepter: req.body.accepter,
+        acceptor: req.body.acceptor,
         status: req.body.status
     })
     .then(
@@ -38,9 +38,9 @@ router.post('/', jsonParser, (req, res) => {
 router.get('/:id', (req, res) => {
     Bet
         .findById(req.params.id)
-        .populate('challenger accepter')
+        .populate('challenger acceptor winner')
         .exec()
-        .then(bet => res.status(200).json(bet))
+        .then(bet => res.status(200).json(bet.serialize()))
         .catch(err => {
             console.error(err);
             res.status(500).json({message: 'Internal server error'})
@@ -56,7 +56,7 @@ router.put('/:id', jsonParser, (req, res) => {
     res.status(400).json({message: message});
   }
     const toUpdate = {};
-    const updateablefields = ['task', 'dueDate', 'reward', 'details', 'challenger', 'accepter', 'status', 'winner', 'verification'];
+    const updateablefields = ['task', 'dueDate', 'reward', 'details', 'challenger', 'acceptor', 'status', 'winner', 'verification'];
     
     updateablefields.forEach(field => {
         if (field in req.body) {

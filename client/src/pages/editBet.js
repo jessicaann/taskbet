@@ -20,19 +20,25 @@ export class EditBet extends React.Component {
             details: null,
             comments: null,
             winner: null,
+            status: null,
             uploadPhoto: null
         };
     }
     componentWillReceiveProps(nextProps){
         this.setState({
-            taskName: nextProps.bet.taskName,
+            taskName: nextProps.bet.task,
             reward: nextProps.bet.reward,
-            dueDate: nextProps.bet.dueDate
-            //finish doing this
+            dueDate: nextProps.bet.dueDate,
+            acceptorName: nextProps.bet.acceptor.fullName,
+            acceptorEmail: nextProps.bet.acceptor.email,
+            details: nextProps.bet.details,
+            comments: nextProps.bet.comments,
+            winner: nextProps.bet.winner.fullName,
+            status: nextProps.bet.status,
+            uploadPhoto: nextProps.bet.uploadPhoto
         });
     }
     componentDidMount(){
-        console.log(this.props);
         const betId = this.props.match.params.id;
         //dispatch get by id action and give it betId
         this.props.dispatch(getBetId(betId));
@@ -55,18 +61,19 @@ export class EditBet extends React.Component {
                     <h1>Edit your bet</h1>
                     <form onSubmit={event => this.editBet(event)}>
                         <Input type={'text'} labelName={'Task'} value={this.state.taskName} labelCol='3' inputCol='9' inputName={'task'} placeholder={'Task'} onChange={event => this.inputChange(event, 'taskName')}/>
-                        <Input type={'text'} labelName={'Reward'}  labelCol='3' inputCol='9' inputName={'reward'} placeholder={'Reward'} onChange={event => this.inputChange(event, 'reward')}/>
-                        <Input type={'date'} labelName={'Due Date'}  labelCol='3' inputCol='9' inputName={'dueDate'} placeholder={'Due Date'} onChange={event => this.inputChange(event, 'dueDate')}/>
-                        <Input type={'text'} labelName={'Bet Acceptor'}  labelCol='3' inputCol='9' inputName={'acceptor'} placeholder={'Acceptor Name'} onChange={event => this.inputChange(event, 'acceptorName')}/>
-                        <Input type={'email'} labelName={'Email'}  labelCol='3' inputCol='9' inputName={'acceptorEmail'} placeholder={'Acceptor Email'} onChange={event => this.inputChange(event, 'acceptorEmail')}/>
-                        <TextArea labelName={'Additional Bet Details'} labelCol='3' inputCol='9' inputName={'details'} placeholder={'Wanna talk trash? This is the place to do it...'} onChange={event => this.textAreaChange(event, 'details')}/>
-                        <Input type={'text'} labelName={'Winner'}  labelCol='3' inputCol='9' inputName={'winner'} placeholder={'Winner'} onChange={event => this.inputChange(event, 'winner')}/>
-                        <Input type={'file'} labelName={'Picture Proof'}  labelCol='3' inputCol='9' inputName={'uploadPhoto'} onChange={event => this.inputChange(event, 'uploadPhoto')}/>
-                        <TextArea labelName={'Proof Comments'}  labelCol='3' inputCol='9' inputName={'comments'} placeholder={'Your last chance to say something sassy...'} onChange={event => this.textAreaChange(event, 'comments')}/>
+                        <Input type={'text'} labelName={'Reward'}  value={this.state.reward} labelCol='3' inputCol='9' inputName={'reward'} placeholder={'Reward'} onChange={event => this.inputChange(event, 'reward')}/>
+                        <Input type={'date'} labelName={'Due Date'}  value={this.state.dueDate} labelCol='3' inputCol='9' inputName={'dueDate'} placeholder={'Due Date'} onChange={event => this.inputChange(event, 'dueDate')}/>
+                        <Input type={'text'} labelName={'Status'}  value={this.state.status} labelCol='3' inputCol='9' inputName={'status'} placeholder={'Status'} onChange={event => this.inputChange(event, 'status')}/>
+                        <Input type={'text'} labelName={'Bet Acceptor'} value={this.state.acceptorName}  labelCol='3' inputCol='9' inputName={'acceptor'} placeholder={'Acceptor Name'} onChange={event => this.inputChange(event, 'acceptorName')}/>
+                        <Input type={'email'} labelName={'Email'} value={this.state.acceptorEmail} labelCol='3' inputCol='9' inputName={'acceptorEmail'} placeholder={'Acceptor Email'} onChange={event => this.inputChange(event, 'acceptorEmail')}/>
+                        <TextArea labelName={'Additional Bet Details'} value={this.state.details} labelCol='3' inputCol='9' inputName={'details'} placeholder={'Wanna talk trash? This is the place to do it...'} onChange={event => this.textAreaChange(event, 'details')}/>
+                        <Input type={'text'} labelName={'Winner'} value={this.state.winner} labelCol='3' inputCol='9' inputName={'winner'} placeholder={'Winner'} onChange={event => this.inputChange(event, 'winner')}/>
+                        <Input type={'file'} labelName={'Picture Proof'} value={this.state.uploadPhoto} labelCol='3' inputCol='9' inputName={'uploadPhoto'} onChange={event => this.inputChange(event, 'uploadPhoto')}/>
+                        <TextArea labelName={'Proof Comments'} value={this.state.comments} labelCol='3' inputCol='9' inputName={'comments'} placeholder={'Your last chance to say something sassy...'} onChange={event => this.textAreaChange(event, 'comments')}/>
 
                         <div className="btn-group btn-group-block">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-secondary">Cancel</button>                    
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button type="button" className="btn btn-secondary">Cancel</button>                    
                         </div>
                     </form>
                 </div>

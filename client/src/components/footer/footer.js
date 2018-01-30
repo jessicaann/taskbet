@@ -4,9 +4,9 @@ import './footer.css'
 
 export default (props) => {
     return (
-        <footer class="footer">
+        <footer className="footer">
             <div>
-                <span class="text-muted">
+                <span className="text-muted">
                     <Link to='/'>TaskBet </Link>&copy; 2018 <a href="www.jessicacottrell.com">Jessica Cottrell</a>
                 </span>
             </div>

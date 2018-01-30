@@ -37,9 +37,9 @@ betSchema.methods.serialize = function(){
         dueDate: this.dueDate,
         reward: this.reward,
         details: this.details,
-        challenger: this.challenger,
-        acceptor: this.acceptor,
-        winner: this.winner,
+        challenger: this.challenger !== null ? this.challenger.map(file => file.serialize()) : [],
+        acceptor: this.acceptor !== null ? this.acceptor.map(acceptor => acceptor.serialize()) : [],
+        winner: this.winner !== null ? this.winner.map(winner => winner.serialize()) : [],
         status: this.status,
         verification:{
             photo: this.photo,
