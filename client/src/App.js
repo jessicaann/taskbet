@@ -2,9 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import './App.css';
-import { LandingPage } from './pages/landingpage';
-import { NewBet } from './pages/newBet';
-import { EditBet } from './pages/editBet';
+import LandingPage from './pages/landingpage';
+import  NewBet  from './pages/newBet';
+import EditBet  from './pages/editBet';
 
 const App = ({ store }) => (
     <Provider store = {store}>

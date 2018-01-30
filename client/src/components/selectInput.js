@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default (props) => {
-    const {selectName, onChange} = props;
+    const {selectName, onChange, value} = props;
     
     const options = props.options.map((optionName, index)=> {
         return (
@@ -9,7 +9,7 @@ export default (props) => {
         );
     });
     return (
-        <select className="col" name={selectName} onChange={onChange}>
+        <select value={value} className="col" name={selectName} onChange={onChange}>
             {options}
         </select>
     );

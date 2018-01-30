@@ -11,7 +11,7 @@ import Input from '../components/input';
 export class NewBet extends React.Component {
     constructor(props) {
         super(props);
-        this.formData = {
+        this.state = {
             acceptorName: null,
             youOrI: null,
             willOrWillNot: null,
@@ -21,34 +21,18 @@ export class NewBet extends React.Component {
             acceptorEmail: null
         };
     }
-    /*setFormData(value, name){
-        const formData = {
-            acceptorName: null,
-            youOrI: null,
-            willOrWillNot: null,
-            taskName: null,
-            dueDate: null,
-            reward: null,
-            acceptorEmail: null
-        };
-        formData[name]= value;
-        console.log(formData);
-        return formData;
-    } */
+    
     inputChange(event, name){
-        // this.setFormData(event.currentTarget.value, name);
-        this.formData = Object.assign(this.formData, {[name]: event.currentTarget.value});
+        this.setState({[name]: event.currentTarget.value});
 
     }
     selectChange(event, name){
-        // this.setFormData(event.currentTarget.value, name);
-        this.formData = Object.assign(this.formData, {[name]: event.currentTarget.value});
+        this.setState({[name]: event.currentTarget.value});
 
     }
     createBet(event){
         event.preventDefault();
-        //  const formData = this.setFormData(); //this doesn't work - wipes out the formdata
-        this.props.dispatch(createNewBet(this.formData));
+        this.props.dispatch(createNewBet(this.state));
     }
     render() {
         return (

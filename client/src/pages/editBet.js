@@ -10,7 +10,7 @@ import TextArea from '../components/textarea';
 export class EditBet extends React.Component {
     constructor(props) {
         super(props);
-        this.formData = {
+        this.state = {
             betId: props.match.params.id,
             taskName: null,
             reward: null,
@@ -23,6 +23,14 @@ export class EditBet extends React.Component {
             uploadPhoto: null
         };
     }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            taskName: nextProps.bet.taskName,
+            reward: nextProps.bet.reward,
+            dueDate: nextProps.bet.dueDate
+            //finish doing this
+        });
+    }
     componentDidMount(){
         console.log(this.props);
         const betId = this.props.match.params.id;
@@ -30,14 +38,14 @@ export class EditBet extends React.Component {
         this.props.dispatch(getBetId(betId));
     }
     inputChange(event, name){
-        this.formData = Object.assign(this.formData, {[name]: event.currentTarget.value});
+        this.setState({[name]: event.currentTarget.value});
     }
     textAreaChange(event, name){
-        this.formData = Object.assign(this.formData, {[name]: event.currentTarget.value});
+        this.setState({[name]: event.currentTarget.value});
     }
     editBet(event){
         event.preventDefault();
-        this.props.dispatch(editBet(this.formData));
+        this.props.dispatch(editBet(this.state));
     }
     render() {
         return (
@@ -46,7 +54,7 @@ export class EditBet extends React.Component {
                 <div className="container">
                     <h1>Edit your bet</h1>
                     <form onSubmit={event => this.editBet(event)}>
-                        <Input type={'text'} labelName={'Task'} labelCol='3' inputCol='9' inputName={'task'} placeholder={'Task'} onChange={event => this.inputChange(event, 'taskName')}/>
+                        <Input type={'text'} labelName={'Task'} value={this.state.taskName} labelCol='3' inputCol='9' inputName={'task'} placeholder={'Task'} onChange={event => this.inputChange(event, 'taskName')}/>
                         <Input type={'text'} labelName={'Reward'}  labelCol='3' inputCol='9' inputName={'reward'} placeholder={'Reward'} onChange={event => this.inputChange(event, 'reward')}/>
                         <Input type={'date'} labelName={'Due Date'}  labelCol='3' inputCol='9' inputName={'dueDate'} placeholder={'Due Date'} onChange={event => this.inputChange(event, 'dueDate')}/>
                         <Input type={'text'} labelName={'Bet Acceptor'}  labelCol='3' inputCol='9' inputName={'acceptor'} placeholder={'Acceptor Name'} onChange={event => this.inputChange(event, 'acceptorName')}/>
@@ -67,4 +75,7 @@ export class EditBet extends React.Component {
         );
     }
 }
-export default connect ()(EditBet);
+const mapStateToProps = state => ({
+    bet: state.currentBet
+});
+export default connect (mapStateToProps)(EditBet);

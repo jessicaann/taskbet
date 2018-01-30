@@ -54,6 +54,7 @@ export const editBetSuccess= data => ({type: EDIT_BET_SUCCESS, data});
 export const GET_BET_ID = 'GET_BET_ID';
 export const getBetId = betId => dispatch => {
     dispatch({type: GET_BET_ID});
+    console.log(BASE_URL, betId);
     fetch(`${BASE_URL}/bets/${betId}`)
         .then(res => {
             if(!res.ok){
@@ -170,7 +171,7 @@ export const DELETE_USER_ID_ERROR = 'DELETE_USER_ID_ERROR';
 export const DELETE_USER_ID_SUCCESS = 'DELETE_USER_ID_SUCCESS';
 export const deleteUserIdError = error => ({type: DELETE_USER_ID_ERROR, error});
 
-//GET BETS WON BY USER ID
+//GET BETS STATS - CHANGE TO STATS
 export const GET_BETS_WON_ID = 'GET_BETS_WON_ID';
 export const getBetsWonId = userId => dispatch => {
     dispatch({type: GET_BETS_WON_ID});
@@ -188,59 +189,6 @@ export const GET_BETS_WON_ID_SUCCESS = 'GET_BETS_WON_ID_SUCCESS';
 export const getBetsWonIdError = error => ({type: GET_BETS_WON_ID_ERROR, error});
 export const getBetsWonIdSuccess= data => ({type: GET_BETS_WON_ID_SUCCESS, data});
 
-//GET BETS LOST BY USER ID
-export const GET_BETS_LOST_ID = 'GET_BETS_LOST_ID';
-export const getBetsLostId = userId => dispatch => {
-    dispatch({type: GET_BETS_LOST_ID});
-    fetch(`${BASE_URL}/${userId}/bets`)
-        .then(res => {
-            if(!res.ok){
-                return getBetsLostIdError('There was an error in the request'); 
-            }
-            return res.json();
-        }).then(data => dispatch(getBetsLostIdSuccess(data)))
-        .catch(err => dispatch(getBetsLostIdError(err)));
-};
-export const GET_BETS_LOST_ID_ERROR = 'GET_BETS_LOST_ID_ERROR';
-export const GET_BETS_LOST_ID_SUCCESS = 'GET_BETS_LOST_ID_SUCCESS';
-export const getBetsLostIdError = error => ({type: GET_BETS_LOST_ID_ERROR, error});
-export const getBetsLostIdSuccess= data => ({type: GET_BETS_LOST_ID_SUCCESS, data});
-
-//GET BETS ACCEPTED BY USER ID
-export const GET_BETS_ACCEPTED_ID = 'GET_BETS_ACCEPTED_ID';
-export const getBetsAcceptedId = userId => dispatch => {
-    dispatch({type: GET_BETS_ACCEPTED_ID});
-    fetch(`${BASE_URL}/${userId}/bets`)
-        .then(res => {
-            if(!res.ok){
-                return getBetsAcceptedIdError('There was an error in the request'); 
-            }
-            return res.json();
-        }).then(data => dispatch(getBetsAcceptedIdSuccess(data)))
-        .catch(err => dispatch(getBetsAcceptedIdError(err)));
-};
-export const GET_BETS_ACCEPTED_ID_ERROR = 'GET_BETS_ACCEPTED_ID_ERROR';
-export const GET_BETS_ACCEPTED_ID_SUCCESS = 'GET_BETS_ACCEPTED_ID_SUCCESS';
-export const getBetsAcceptedIdError = error => ({type: GET_BETS_ACCEPTED_ID_ERROR, error});
-export const getBetsAcceptedIdSuccess= data => ({type: GET_BETS_ACCEPTED_ID_SUCCESS, data});
-
-//GET BETS CHALLENGED BY USER ID
-export const GET_BETS_CHALLENGED_ID = 'GET_BETS_CHALLENGED_ID';
-export const getBetsChallengedId = userId => dispatch => {
-    dispatch({type: GET_BETS_CHALLENGED_ID});
-    fetch(`${BASE_URL}/${userId}/bets`)
-        .then(res => {
-            if(!res.ok){
-                return getBetsChallengedIdError('There was an error in the request'); 
-            }
-            return res.json();
-        }).then(data => dispatch(getBetsChallengedIdSuccess(data)))
-        .catch(err => dispatch(getBetsChallengedIdError(err)));
-};
-export const GET_BETS_CHALLENGED_ID_ERROR = 'GET_BETS_CHALLENGED_ID_ERROR';
-export const GET_BETS_CHALLENGED_ID_SUCCESS = 'GET_BETS_CHALLENGED_ID_SUCCESS';
-export const getBetsChallengedIdError = error => ({type: GET_BETS_CHALLENGED_ID_ERROR, error});
-export const getBetsChallengedIdSuccess= data => ({type: GET_BETS_CHALLENGED_ID_SUCCESS, data});
 
 //CREATE NEW SESSION, POST
 export const CREATE_NEW_SESSION = 'CREATE_NEW_SESSION';

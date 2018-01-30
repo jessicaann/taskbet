@@ -110,9 +110,9 @@ router.get('/:id/bets', (req, res) => {
         res.status(500).json({message: 'Internal server error'})
     });
 });
-//how do I differentiate the endpoints?
+//create a stats endpoint for all four pieces of info, add to the app.js
 //Get Bets Won
-/*router.get('/:id/bets', (req, res) => {
+/*router.get('/:id/stats', (req, res) => {
     const wonBets = Bet.find( {winner: req.params.id} );
     wonBets.exec()
     .then(bets => {

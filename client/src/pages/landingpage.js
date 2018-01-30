@@ -53,3 +53,5 @@ export const LandingPage = (props) => {
         </div>
     );
 };
+
+export default connect ()(LandingPage);

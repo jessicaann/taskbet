@@ -2,7 +2,9 @@ import * as actions from '../actions/actions';
 
 const initialState = {
     bets: [],
-    currentBet: null
+    currentBet: null,
+    loading: false,
+    error: null
 };
 //initial state is just the big variables that your users will be able to see. 
 export const taskBetReducer = (state=initialState, action) => {
@@ -44,13 +46,22 @@ export const taskBetReducer = (state=initialState, action) => {
         /* return action.board; */
     }
     else if (action.type === actions.GET_BET_ID) {
-        /* return action.board; */
+        //trigger a loading
+        return Object.assign({}, state, {
+            loading: true
+        });
     }
     else if (action.type === actions.GET_BET_ID_ERROR) {
-        /* return action.board; */
+        return Object.assign({}, state, {
+            loading: false,
+            error: action.error
+        });
     }
     else if (action.type === actions.GET_BET_ID_SUCCESS) {
-        /* return action.board; */
+        return Object.assign({}, state, {
+            loading: false,
+            currentBet: action.data
+        });
     }
     else if (action.type === actions.DELETE_BET_ID) {
         /* return action.board; */
@@ -95,18 +106,6 @@ export const taskBetReducer = (state=initialState, action) => {
         /* return action.board; */
     }
     else if (action.type === actions.DELETE_USER_ID_SUCCESS) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.GET_BETS_WON_ID) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.GET_BETS_LOST_ID) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.GET_BETS_ACCEPTED_ID) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.GET_BETS_CHALLENGED_ID) {
         /* return action.board; */
     }
     else if (action.type === actions.CREATE_NEW_SESSION) {
