@@ -10,10 +10,7 @@ const initialState = {
 export const taskBetReducer = (state=initialState, action) => {
     if (action.type === actions.CREATE_NEW_BET) {
         return Object.assign({}, state, {
-            /*lists: [...state.lists, {
-                title: action.title,
-                cards: []
-            }] */
+            loading: true
         });
     }
     else if (action.type === actions.CREATE_NEW_BET_SUCCESS) {

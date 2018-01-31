@@ -6,6 +6,7 @@ import Footer from '../components/footer/footer';
 import NavBar from '../components/navbar/navbar';
 import SelectInput from '../components/selectInput';
 import Input from '../components/input';
+import TextArea from '../components/textarea';
 
 //add the new select options to edit bet and to the database
 export class NewBet extends React.Component {
@@ -13,15 +14,19 @@ export class NewBet extends React.Component {
         super(props);
         this.state = {
             acceptorName: null,
-            youOrI: null,
+            pronoun: null,
             willOrWillNot: null,
-            taskName: null,
+            task: null,
             dueDate: null,
             reward: null,
+            details: null,
             acceptorEmail: null
         };
     }
-    
+    autoComplete(event){
+    //somehow make the second reference to acceptor name fill in?
+        return;
+    }
     inputChange(event, name){
         this.setState({[name]: event.currentTarget.value});
 
@@ -42,22 +47,23 @@ export class NewBet extends React.Component {
                     <h1>Got an unwanted task?</h1>
                     <h5>Bet on it and get 'er done!</h5>
                     <form className="form-horizontal" onSubmit={event => this.createBet(event)}>
-                        <Input type={'text'} labelName={'I bet'}  labelCol='3' inputCol='9' inputName={'acceptor'} placeholder={'Bob Jenkins'} onChange={event => this.inputChange(event, 'acceptorName')}/>     
+                        <Input type={'text'} value={this.state.acceptorName} labelName={'I bet'}  labelCol='3' inputCol='9' inputName={'acceptor'} placeholder={'Bob Jenkins'} onChange={event => { this.inputChange(event, 'acceptorName'); this.autoComplete(event);}}/>     
                         <div className="form-group row">
                             <label className= {'col-form-label col-3'}>that</label>
-                            <SelectInput selectName={'youOrI'} options={['you', 'I']} onChange={event => this.selectChange(event, 'youOrI')}/>
-                            <SelectInput selectName={'willOrWillNot'} options={['will', 'will not']} onChange={event => this.selectChange(event, 'willOrWillNot')}/>
+                            <SelectInput value={this.state.pronoun} selectName={'who'} options={['you', 'I', 'he', 'she', 'they']} onChange={event => this.selectChange(event, 'youOrI')}/>
+                            <SelectInput value={this.state.willOrWillNot} selectName={'willOrWillNot'} options={['will', 'will not']} onChange={event => this.selectChange(event, 'willOrWillNot')}/>
                         </div>
-                        <Input type={'text'} inputCol='12' inputName={'task'} placeholder={'Describe the task here - i.e. wash the dishes'} onChange={event => this.inputChange(event, 'taskName')}/>
-                        <Input type={'date'} labelName={'by'}  labelCol='3' inputCol='9' inputName={'dueDate'} placeholder={'12/31/2018'} onChange={event => this.inputChange(event, 'dueDate')}/>
+                        <Input type={'text'} value={this.state.task} inputCol='12' inputName={'task'} placeholder={'Describe the task here - i.e. wash the dishes'} onChange={event => this.inputChange(event, 'taskName')}/>
+                        <Input type={'date'} value={this.state.dueDate} labelName={'by'}  labelCol='3' inputCol='9' inputName={'dueDate'} placeholder={'12/31/2018'} onChange={event => this.inputChange(event, 'dueDate')}/>
                         <div className="form-group row">
                             <div className='col'>
                             If I win this TaskBet,
                             </div>
                         </div>
-                        <Input type={'text'} inputCol='12' inputName={'acceptor'} placeholder={'Auto Complete Acceptor Name - Bob'} />   
-                        <Input type={'text'} labelName={'has to'}  labelCol='3' inputCol='9' inputName={'reward'} placeholder={'buy me dinner'} onChange={event => this.inputChange(event, 'reward')}/>
-                        <Input type={'email'} labelName={'Send the bet to:'}  labelCol='3' inputCol='9' inputName={'acceptorEmail'} placeholder={'bob@bob.com'} onChange={event => this.inputChange(event, 'acceptorEmail')}/>
+                        <Input type={'text'} value={this.state.acceptorName} inputCol='12' inputName={'acceptor'} placeholder={'Auto Complete Acceptor Name - Bob'} />   
+                        <Input type={'text'} value={this.state.reward} labelName={'has to'}  labelCol='3' inputCol='9' inputName={'reward'} placeholder={'buy me dinner'} onChange={event => this.inputChange(event, 'reward')}/>
+                        <TextArea value={this.state.details} labelName={'Additional Bet Details'} value={this.state.details} labelCol='3' inputCol='9' inputName={'details'} placeholder={'Wanna talk trash or make your bet crystal clear? This is the place to do it...'} onChange={event => this.textAreaChange(event, 'details')}/>
+                        <Input type={'email'} value={this.state.acceptorEmail} labelName={'Send the bet to:'}  labelCol='3' inputCol='9' inputName={'acceptorEmail'} placeholder={'bob@bob.com'} onChange={event => this.inputChange(event, 'acceptorEmail')}/>
                         <div className="btn-group" role="group">
                             <button className="btn btn-link">Cancel</button>
                             <button className="btn btn-success" type="submit">Bet on it</button>

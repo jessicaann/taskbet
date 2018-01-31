@@ -6,20 +6,20 @@ const betSchema = mongoose.Schema({
     dueDate: {type: Date, required: true},
     reward: {type: String, required: true},
     details: String,
-    challenger: {
+    challenger: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    },
-    acceptor: {
+    }],
+    acceptor: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
-    },
-    winner: {
+    }],
+    winner: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-    },
+    }],
     status: {type: String, required: true},
     verification:{
         photo: String,
@@ -31,15 +31,16 @@ const betSchema = mongoose.Schema({
 ) 
 
 betSchema.methods.serialize = function(){
+    console.log(this);
     return {
         id: this._id,
         task: this.task,
         dueDate: this.dueDate,
         reward: this.reward,
         details: this.details,
-        challenger: this.challenger !== null ? this.challenger.map(file => file.serialize()) : [],
-        acceptor: this.acceptor !== null ? this.acceptor.map(acceptor => acceptor.serialize()) : [],
-        winner: this.winner !== null ? this.winner.map(winner => winner.serialize()) : [],
+        challenger: this.challenger !== null ? this.challenger.map(challenger => challenger.serialize()) : null,
+        acceptor: this.acceptor !== null ? this.acceptor.map(acceptor => acceptor.serialize()) : null,
+        winner: this.winner !== null ? this.winner.map(winner => winner.serialize()) : null,
         status: this.status,
         verification:{
             photo: this.photo,

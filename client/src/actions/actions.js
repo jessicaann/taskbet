@@ -54,7 +54,6 @@ export const editBetSuccess= data => ({type: EDIT_BET_SUCCESS, data});
 export const GET_BET_ID = 'GET_BET_ID';
 export const getBetId = betId => dispatch => {
     dispatch({type: GET_BET_ID});
-    console.log(BASE_URL, betId);
     fetch(`${BASE_URL}/bets/${betId}`)
         .then(res => {
             if(!res.ok){
