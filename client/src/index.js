@@ -6,9 +6,9 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
 
-import {taskBetReducer} from './reducers/reducers';
+import {betsReducer, statsReducer, usersReducer} from './reducers';
 
-let store = createStore(taskBetReducer, applyMiddleware(thunk));
+let store = createStore(betsReducer, statsReducer, usersReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
     <App store={store} />, 

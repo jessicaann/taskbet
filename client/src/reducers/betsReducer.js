@@ -1,4 +1,4 @@
-import * as actions from '../actions/actions';
+import * as actions from '../actions/betsActions';
 
 const initialState = {
     bets: [],
@@ -7,7 +7,7 @@ const initialState = {
     error: null
 };
 //initial state is just the big variables that your users will be able to see. 
-export const taskBetReducer = (state=initialState, action) => {
+export const betReducer = (state=initialState, action) => {
     if (action.type === actions.CREATE_NEW_BET) {
         return Object.assign({}, state, {
             loading: true
@@ -59,48 +59,6 @@ export const taskBetReducer = (state=initialState, action) => {
         /* return action.board; */
     }
     else if (action.type === actions.DELETE_BET_ID_SUCCESS) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.CREATE_NEW_USER) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.CREATE_NEW_USER_SUCCESS) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.CREATE_NEW_USER_ERROR) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.EDIT_USER) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.EDIT_USER_SUCCESS) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.EDIT_USER_ERROR) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.GET_USER_ID) {
-        /* return action.board; */
-    }
-    else if (action.type === actions. GET_USER_ID_ERROR) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.GET_USER_ID_SUCCESS) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.DELETE_USER_ID) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.DELETE_USER_ID_ERROR) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.DELETE_USER_ID_SUCCESS) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.CREATE_NEW_SESSION) {
-        /* return action.board; */
-    }
-    else if (action.type === actions.DELETE_SESSION) {
         /* return action.board; */
     }
     return state;

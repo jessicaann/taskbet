@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getBetId, editBet } from '../actions/actions';
+import { getBetId, editBet } from '../actions/betsActions';
 //import components
 import Footer from '../components/footer/footer';
 import NavBar from '../components/navbar/navbar';

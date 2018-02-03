@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var moment = require('moment');
 
 //Bet Schema
 const betSchema = mongoose.Schema({
@@ -37,7 +38,7 @@ betSchema.methods.serialize = function(){
     return {
         id: this._id,
         task: this.task,
-        dueDate: this.dueDate,
+        dueDate: moment(this.dueDate).format('LLLL'),
         reward: this.reward,
         details: this.details,
         challenger: this.challenger !== null ? this.challenger.map(challenger => challenger.serialize()) : null,
