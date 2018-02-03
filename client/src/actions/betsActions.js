@@ -86,27 +86,3 @@ export const DELETE_BET_ID_ERROR = 'DELETE_BET_ID_ERROR';
 export const DELETE_BET_ID_SUCCESS = 'DELETE_BET_ID_SUCCESS';
 export const deleteBetIdError = error => ({type: DELETE_BET_ID_ERROR, error});
 
-//CREATE NEW USER, POST
-export const CREATE_NEW_USER = 'CREATE_NEW_USER';
-export const createNewUser = formData => dispatch => {
-    dispatch({type: CREATE_NEW_USER});
-    fetch(`${BASE_URL}/users`, {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    }).then(res => {
-        if(!res.ok){
-            return createNewUserError('There was an error in the request'); 
-        }
-        return res.json();
-    }).then(data => dispatch(createNewUserSuccess(data)))
-        .catch(err => dispatch(createNewUserError(err)));
-};
-export const CREATE_NEW_USER_SUCCESS = 'CREATE_NEW_USER_SUCCESS';
-export const CREATE_NEW_USER_ERROR = 'CREATE_NEW_USER_ERROR';
-export const createNewUserError = error => ({type: CREATE_NEW_USER_ERROR, error});
-export const createNewUserSuccess = data => ({type: CREATE_NEW_USER_SUCCESS, data});
-

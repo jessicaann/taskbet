@@ -14,6 +14,7 @@ mongoose.Promise = global.Promise;
 var index = require('./routes/index');
 var users = require('./routes/users');
 var bets = require('./routes/bets');
+var stats = require('./routes/stats');
 var app = express();
 
 // uncomment after placing your favicon in /public
@@ -38,6 +39,7 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/bets', bets);
+app.use('/stats', stats);
 
 var server;
 

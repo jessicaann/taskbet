@@ -1,18 +1,18 @@
 import {BASE_URL} from '../config';
-//GET BETS STATS - CHANGE TO STATS
-export const GET_BETS_WON_ID = 'GET_BETS_WON_ID';
-export const getBetsWonId = userId => dispatch => {
-    dispatch({type: GET_BETS_WON_ID});
-    fetch(`${BASE_URL}/${userId}/bets`)
+//GET BETS STATS
+export const GET_STATS_ID = 'GET_STATS_ID';
+export const getStatsId = userId => dispatch => {
+    dispatch({type: GET_STATS_ID});
+    fetch(`${BASE_URL}/stats/${userId}`)
         .then(res => {
             if(!res.ok){
-                return getBetsWonIdError('There was an error in the request'); 
+                return getStatsIdError('There was an error in the request'); 
             }
             return res.json();
-        }).then(data => dispatch(getBetsWonIdSuccess(data)))
-        .catch(err => dispatch(getBetsWonIdError(err)));
+        }).then(data => dispatch(getStatsIdSuccess(data)))
+        .catch(err => dispatch(getStatsIdError(err)));
 };
-export const GET_BETS_WON_ID_ERROR = 'GET_BETS_WON_ID_ERROR';
-export const GET_BETS_WON_ID_SUCCESS = 'GET_BETS_WON_ID_SUCCESS';
-export const getBetsWonIdError = error => ({type: GET_BETS_WON_ID_ERROR, error});
-export const getBetsWonIdSuccess= data => ({type: GET_BETS_WON_ID_SUCCESS, data});
+export const GET_STATS_ID_ERROR = 'GET_STATS_ID_ERROR';
+export const GET_STATS_ID_SUCCESS = 'GET_STATS_ID_SUCCESS';
+export const getStatsIdError = error => ({type: GET_STATS_ID_ERROR, error});
+export const getStatsIdSuccess= data => ({type: GET_STATS_ID_SUCCESS, data});

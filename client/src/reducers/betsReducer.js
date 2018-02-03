@@ -7,7 +7,7 @@ const initialState = {
     error: null
 };
 //initial state is just the big variables that your users will be able to see. 
-export const betReducer = (state=initialState, action) => {
+export const betsReducer = (state=initialState, action) => {
     if (action.type === actions.CREATE_NEW_BET) {
         return Object.assign({}, state, {
             loading: true

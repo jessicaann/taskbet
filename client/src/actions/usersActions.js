@@ -1,4 +1,29 @@
 import {BASE_URL} from '../config';
+//CREATE NEW USER, POST
+export const CREATE_NEW_USER = 'CREATE_NEW_USER';
+export const createNewUser = formData => dispatch => {
+    dispatch({type: CREATE_NEW_USER});
+    fetch(`${BASE_URL}/users`, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
+        if(!res.ok){
+            return createNewUserError('There was an error in the request'); 
+        }
+        return res.json();
+    }).then(data => dispatch(createNewUserSuccess(data)))
+        .catch(err => dispatch(createNewUserError(err)));
+};
+export const CREATE_NEW_USER_SUCCESS = 'CREATE_NEW_USER_SUCCESS';
+export const CREATE_NEW_USER_ERROR = 'CREATE_NEW_USER_ERROR';
+export const createNewUserError = error => ({type: CREATE_NEW_USER_ERROR, error});
+export const createNewUserSuccess = data => ({type: CREATE_NEW_USER_SUCCESS, data});
+
+
 //EDIT USERS, PUT
 export const EDIT_USER = 'EDIT_USER';
 export const editUser = formData => dispatch => {

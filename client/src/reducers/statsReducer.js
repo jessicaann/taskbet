@@ -1,12 +1,12 @@
 import * as actions from '../actions/statsActions';
 
 const initialState = {
-    userBetStats: null,
+    betStats: null,
     loading: false,
     error: null
 };
 //initial state is just the big variables that your users will be able to see. 
-export const betReducer = (state=initialState, action) => {
+export const statsReducer = (state=initialState, action) => {
     if (action.type === actions.GET_STATS_ID) {
         //trigger a loading
         return Object.assign({}, state, {

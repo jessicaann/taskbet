@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getBetId, editBet } from '../actions/betsActions';
+import moment from 'moment';
 //import components
 import Footer from '../components/footer/footer';
 import NavBar from '../components/navbar/navbar';
@@ -25,15 +26,16 @@ export class EditBet extends React.Component {
         };
     }
     componentWillReceiveProps(nextProps){
+        console.log(nextProps)
         this.setState({
             task: nextProps.bet.task,
             reward: nextProps.bet.reward,
-            dueDate: nextProps.bet.dueDate,
+            dueDate: nextProps.bet.dueDate,//wrap inside moment
             acceptorName: nextProps.bet.acceptor[0].fullName,
             acceptorEmail: nextProps.bet.acceptor[0].email,
             details: nextProps.bet.details,
             comments: nextProps.bet.comments,
-            winner: nextProps.bet.winner[0].fullName,
+            winner: nextProps.bet.winner ? nextProps.bet.winner[0].fullName : null,
             status: nextProps.bet.status,
             uploadPhoto: nextProps.bet.uploadPhoto
         });
@@ -82,7 +84,9 @@ export class EditBet extends React.Component {
         );
     }
 }
-const mapStateToProps = state => ({
-    bet: state.currentBet
-});
+const mapStateToProps = state => {
+    return {
+        bet: state.betsReducer.currentBet
+    };
+};
 export default connect (mapStateToProps)(EditBet);

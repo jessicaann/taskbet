@@ -10,47 +10,30 @@ const {Bet} = require('../models/bet');
 
 //create a stats endpoint for all four pieces of info, add to the app.js
 //Get Bets Won
-router.get('/stats/:id', (req, res) => {
-    const wonBets = Bet.find( {winner: req.params.id} );
-    wonBets.exec()
-    .then(bets => {
-        res.json( bets.map(bet => bet.serialize()) );
-    })
-    .catch(err => {
-        console.error(err);
-        res.status(500).json({message: 'Internal server error'})
-    });
-    //Get Bets Lost
+router.get('/:id', (req, res) => {
+    const wonBets = Bet.find( {winner: req.params.id} ).exec();
     const lostBets = Bet.find( 
         { $and: [
             {$or: [ { challenger: req.params.id}, {acceptor: req.params.id} ] },
-            {$not: {winner: req.params.id} }
+            /*{$not: {winner: req.params.id} }*/
         ]} 
-    );
-    lostBets.exec()
-    .then(bets => {
-        res.json( bets.map(bet => bet.serialize()) );
-    })//do I want a list of them to be returned or just the number of them?
-    .catch(err => {
-        console.error(err);
-        res.status(500).json({message: 'Internal server error'})
-    });
-//Get Bets Challenged
-    const challengedBets = Bet.find( {challenger: req.params.id} );
-    challengedBets.exec()
-    .then(bets => {
-        res.json( bets.map(bet => bet.serialize()) );
-    })//do I want a list of them to be returned or just the number of them?
-    .catch(err => {
-        console.error(err);
-        res.status(500).json({message: 'Internal server error'})
-    });
-//Get Bets Accepted
-    const acceptedBets = Bet.find( {acceptor: req.params.id} );
-    acceptedBets.exec()
-    .then(bets => {
-        res.json( bets.map(bet => bet.serialize()) );
-    })//do I want a list of them to be returned or just the number of them?
+    ).exec();
+    const challengedBets = Bet.find( {challenger: req.params.id} ).exec();
+    const acceptedBets = Bet.find( {acceptor: req.params.id} ).exec();
+    const stats = Promise.all([
+        wonBets,
+        lostBets,
+        challengedBets,
+        acceptedBets
+    ])
+    .then(responses => {
+        res.json({
+            wons: responses[0],
+            lost: responses[1],
+            challenged: responses[2],
+            accepted: responses[3]
+        });
+    })
     .catch(err => {
         console.error(err);
         res.status(500).json({message: 'Internal server error'})
