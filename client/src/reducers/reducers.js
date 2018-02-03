@@ -14,24 +14,16 @@ export const taskBetReducer = (state=initialState, action) => {
         });
     }
     else if (action.type === actions.CREATE_NEW_BET_SUCCESS) {
-        
-        /*let lists = state.lists.map((list, index) => {
-            if (index !== action.listIndex) {
-                return list;
-            }
-            return Object.assign({}, list, {
-                cards: [...list.cards, {
-                    text: action.text
-                }]
-            }); 
-        }); 
-
         return Object.assign({}, state, {
-            lists
-        }); */
+            loading: false,
+            currentBet: action.data
+        });
     }
     else if (action.type === actions.CREATE_NEW_BET_ERROR) {
-        /* return action.board; */
+        return Object.assign({}, state, {
+            loading: false,
+            error: action.error
+        });
     }
     else if (action.type === actions.EDIT_BET) {
         /* return action.board; */

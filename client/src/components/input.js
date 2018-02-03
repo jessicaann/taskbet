@@ -17,7 +17,7 @@ export default (props) => {
         content =
         <div className="form-group  row">
             <div className={`col-${inputCol}`}>
-                <input className="form-control" type={type} name={inputName} value={value} placeholder={placeholder}/>
+                <input className="form-control" type={type} name={inputName} value={value} placeholder={placeholder} onChange={onChange}/>
             </div>
         </div>;
     }

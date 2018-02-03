@@ -5,6 +5,8 @@ const betSchema = mongoose.Schema({
     task: {type: String, required: true},
     dueDate: {type: Date, required: true},
     reward: {type: String, required: true},
+    willOrWillNot: {type: String, required: true},
+    pronoun: {type: String, required: true},
     details: String,
     challenger: [{
         type: mongoose.Schema.Types.ObjectId,

@@ -5,10 +5,12 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const {Bet} = require('../models/bet');
+const {User} = require('../models/user');
 
 //Create new bets
 router.post('/', jsonParser, (req, res) => {
-    const requiredFields = ['task', 'dueDate', 'reward', 'details', 'challenger', 'acceptor', 'status'];
+    const requiredFields = ['task', 'dueDate', 'reward', 'challenger', 'willOrWillNot', 'pronoun','acceptorEmail', 'acceptorFirstName', 'acceptorLastName'];
+    
     for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -17,18 +19,32 @@ router.post('/', jsonParser, (req, res) => {
             return res.status(400).send(message);
         }
     }
-    Bet
-    .create({
-        task: req.body.task,
-        dueDate: req.body.dueDate,
-        reward: req.body.reward,
-        details: req.body.details,
-        challenger: req.body.challenger,
-        acceptor: req.body.acceptor,
-        status: req.body.status
+    User.findOne({email: req.body.acceptorEmail})
+    .then(user => {
+        if (!user) {
+            return (
+                User.create({
+                email: req.body.acceptorEmail,
+                firstName: req.body.acceptorFirstName,
+                lastName: req.body.acceptorLastName
+            }))
+        }
+        return user;
+    }).then(acceptor => {
+        return Bet.create({
+            task: req.body.task,
+            dueDate: req.body.dueDate,
+            reward: req.body.reward,
+            willOrWillNot: req.body.willOrWillNot,
+            pronoun: req.body.pronoun,
+            details: req.body.details,
+            challenger: req.body.challenger,
+            acceptor: acceptor,
+            status: 'active'
+        })
     })
     .then(
-    bet => res.status(201).json(bet.serialize()))
+    bet => res.status(201).json(bet))
     .catch(err => {
         console.error(err);
         res.status(500).json({message: 'Internal server error'});
