@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
     ])
     .then(responses => {
         res.json({
-            wons: responses[0],
+            won: responses[0],
             lost: responses[1],
             challenged: responses[2],
             accepted: responses[3]
