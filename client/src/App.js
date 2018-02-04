@@ -6,6 +6,7 @@ import LandingPage from './pages/landingpage';
 import  NewBet  from './pages/newBet';
 import EditBet  from './pages/editBet';
 import  Dashboard  from './pages/dashboard';
+import Login from './pages/login';
 
 const App = ({ store }) => (
     <Provider store = {store}>
@@ -15,11 +16,11 @@ const App = ({ store }) => (
                 <Route exact path="/bets/:id" component={EditBet}/>
                 <Route exact path="/bets" component={NewBet} />
                 <Route exact path="/stats/:id" component={Dashboard} />
+                <Route exact path="/login" component={Login} />
             </div>
         </Router>
     </Provider>
 );
 
-//<--!<Route exact path="/users" component={Login} /> -->
 
 export default App;

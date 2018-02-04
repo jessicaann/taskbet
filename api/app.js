@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var moment = require('moment');
+var jwt = require('jsonwebtoken')
 const mongoose = require('mongoose');
 const {DATABASE_URL, PORT} = require('./config');
 
@@ -15,6 +16,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var bets = require('./routes/bets');
 var stats = require('./routes/stats');
+var login = require('./routes/login');
+var logout = require('./routes/logout');
 var app = express();
 
 // uncomment after placing your favicon in /public
@@ -40,6 +43,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/bets', bets);
 app.use('/stats', stats);
+app.use('/login', login);
+app.use('/logout', logout);
 
 var server;
 

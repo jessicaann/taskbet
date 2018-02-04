@@ -30,7 +30,7 @@ export class EditBet extends React.Component {
         this.setState({
             task: nextProps.bet.task,
             reward: nextProps.bet.reward,
-            dueDate: nextProps.bet.dueDate,//wrap inside moment
+            dueDate: moment(nextProps.bet.dueDate).format('LLLL'),
             acceptorName: nextProps.bet.acceptor[0].fullName,
             acceptorEmail: nextProps.bet.acceptor[0].email,
             details: nextProps.bet.details,

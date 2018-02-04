@@ -88,19 +88,25 @@ export const deleteUserIdError = error => ({type: DELETE_USER_ID_ERROR, error});
 export const CREATE_NEW_SESSION = 'CREATE_NEW_SESSION';
 export const createNewSession = formData => dispatch => {
     dispatch({type: CREATE_NEW_SESSION});
-    fetch(`${BASE_URL}/session`, {
+    fetch(`${BASE_URL}/login`, {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
-    }).then(res => {
+    }).then(res =>
+        res.json().then(user => ({ user, res }))
+    ).then(({ user, res }) =>  {
         if(!res.ok){
             return createNewSessionError('There was an error in the request'); 
+        } else {
+            localStorage.setItem('id_token', user.id._token);
+            localStorage.setItem('id_token', user.access_token);
+            return res.json();
         }
-        return res.json();
-    }).then(data => dispatch(createNewSessionSuccess(data)))
+    }
+    ).then(data => dispatch(createNewSessionSuccess(data)))
         .catch(err => dispatch(createNewSessionError(err)));
 };
 export const CREATE_NEW_SESSION_SUCCESS = 'CREATE_NEW_SESSION_SUCCESS';

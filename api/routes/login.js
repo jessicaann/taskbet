@@ -7,7 +7,7 @@ const jsonParser = bodyParser.json();
 const {User} = require('./models/user');
 
 //User Login - Create a Session
-router.post('/session', jsonParser, (req, res) => {
+router.post('/', jsonParser, (req, res) => {
     console.log(req.body);
     const requiredFields = ['email', 'password'];
     for (let i=0; i<requiredFields.length; i++) {
@@ -36,10 +36,6 @@ router.post('/session', jsonParser, (req, res) => {
             res.status(404).json({message: 'Invalid login'})
         }
     })
-})
-//Delete the Session
-router.delete('/session', (req, res) => {
-    res.status(204).send
 })
 
 //export the router

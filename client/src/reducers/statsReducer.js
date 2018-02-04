@@ -22,7 +22,7 @@ export const statsReducer = (state=initialState, action) => {
     else if (action.type === actions.GET_STATS_ID_SUCCESS) {
         return Object.assign({}, state, {
             loading: false,
-            userBetStats: action.data
+            betStats: action.data
         });
     }
     return state;

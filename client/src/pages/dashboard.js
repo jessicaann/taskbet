@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getStatsId } from '../actions/statsActions';
 import UnorderedList from '../components/unorderedList';
-
 import Footer from '../components/footer/footer';
 import NavBar from '../components/navbar/navbar';
+import './dashboard.css';
 
 export class Dashboard extends React.Component {
     constructor(props) {
@@ -52,6 +52,7 @@ export class Dashboard extends React.Component {
     }
 }
 const mapStateToProps = state => {
+    console.log(state.statsReducer.betStats);
     return  {
         stats: state.statsReducer.betStats
     };

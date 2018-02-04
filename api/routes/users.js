@@ -113,6 +113,3 @@ router.get('/:id/bets', (req, res) => {
 
 //export the router
 module.exports = router;
-/*
-- still do a session, then JWT is encoding what we send from the client to the server
-*/
