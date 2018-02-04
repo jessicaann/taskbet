@@ -26,7 +26,6 @@ export class EditBet extends React.Component {
         };
     }
     componentWillReceiveProps(nextProps){
-        console.log(nextProps)
         this.setState({
             task: nextProps.bet.task,
             reward: nextProps.bet.reward,

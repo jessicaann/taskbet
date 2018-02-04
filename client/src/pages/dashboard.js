@@ -16,6 +16,7 @@ export class Dashboard extends React.Component {
         };
     }
     componentWillReceiveProps(nextProps){
+        console.log(nextProps);
         this.setState({
             won: nextProps.stats.wons,
             lost: nextProps.stats.lost,
@@ -24,6 +25,7 @@ export class Dashboard extends React.Component {
         });
     }
     componentDidMount(){
+        console.log(this.props)
         const userId = this.props.match.params.id;
         //dispatch get by id action and give it userId
         this.props.dispatch(getStatsId(userId));
@@ -36,7 +38,9 @@ export class Dashboard extends React.Component {
         );
     }
 }
-const mapStateToProps = state => ({
-    stats: state.statsReducer.betStats
-});
+const mapStateToProps = state => {
+    return  {
+        stats: state.statsReducer.betStats
+    };
+};
 export default connect (mapStateToProps)(Dashboard);
