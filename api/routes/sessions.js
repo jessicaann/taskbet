@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var jwt = require('jsonwebtoken')
+var {JWTSECRET} = require('../config');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-const {User} = require('./models/user');
+const {User} = require('../models/user');
 
 //User Login - Create a Session
 router.post('/', jsonParser, (req, res) => {
@@ -29,13 +31,24 @@ router.post('/', jsonParser, (req, res) => {
             }
             else {
                 //create the session
-                res.status(200).json({accessToken: user.id, username: user.fullName})
+                const payload = {
+                    userId: user.id, username: user.fullName
+                }
+                var token = jwt.sign(payload, JWTSECRET, {
+                    expiresIn: '1d' // expires in 24 hours
+                  })
+                res.status(200).json({accessToken: token, username: user.fullName})
             }
         }
         else {
             res.status(404).json({message: 'Invalid login'})
         }
     })
+})
+
+//Delete the Session
+router.delete('/', (req, res) => {
+    res.status(204).send
 })
 
 //export the router

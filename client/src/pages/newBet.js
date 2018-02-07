@@ -25,10 +25,6 @@ export class NewBet extends React.Component {
             challenger: '59074c7c057aaffaafb0da72',
         };
     }
-    autoComplete(event){
-    //dispatch an action that 
-        return;
-    }
     inputChange(event, name){
         this.setState({[name]: event.currentTarget.value});
         console.log(name, event.currentTarget.value);

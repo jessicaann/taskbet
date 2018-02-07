@@ -1,7 +1,6 @@
 import * as actions from '../actions/usersActions';
 
 const initialState = {
-    sessionAuthenticated: false,
     currentUser: null,
     loading: false,
     error: ''
@@ -69,8 +68,8 @@ export const usersReducer = (state=initialState, action) => {
     else if (action.type === actions.CREATE_NEW_SESSION_SUCCESS) {
         return Object.assign({}, state, {
             loading: false,
-            sessionAuthenticated: true,
-            currentUser: action.data
+            currentUser: action.data.username,
+            authToken: action.data.accessToken
         });
     }
     else if (action.type === actions.CREATE_NEW_SESSION_ERROR) {
@@ -82,8 +81,8 @@ export const usersReducer = (state=initialState, action) => {
     else if (action.type === actions.DELETE_SESSION) {
         return Object.assign({}, state, {
             loading: false,
-            sessionAuthenticated: false,
-            currentUser: null
+            currentUser: null,
+            authToken: null
         });
     }
     return state;

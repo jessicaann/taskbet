@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createNewUser, createNewSession } from '../actions/usersActions';
+import { createNewSession } from '../actions/usersActions';
 //import components
 import Footer from '../components/footer/footer';
 import NavBar from '../components/navbar/navbar';
@@ -19,7 +19,19 @@ export class Login extends React.Component {
         this.setState({[name]: event.currentTarget.value});
     }
     onSubmit(event){
-        this.props.dispatch(createNewSession(this.state));
+        event.preventDefault();
+        const password = this.state.password.trim();
+        const email = this.state.email.trim();
+        const data = {
+            password: password,
+            email: email
+        };
+        this.props.dispatch(createNewSession(data));
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.authToken){
+            this.props.history.push('/stats/59074c7c057aaffaafb0da71');
+        }
     }
     render() {
         let error;
@@ -48,5 +60,10 @@ export class Login extends React.Component {
         );
     }
 }
-
-export default connect ()(Login);
+const mapStateToProps = state => {
+    return {
+        user: state.usersReducer.currentUser,
+        authToken: state.usersReducer.authToken
+    };
+};
+export default connect (mapStateToProps)(Login);
