@@ -43,7 +43,7 @@ app.use('/users', users);
 app.use('/bets', bets);
 app.use('/stats', stats);
 app.use('/sessions', sessions);
-
+app.use('/logout', logout);
 
 var server;
 
