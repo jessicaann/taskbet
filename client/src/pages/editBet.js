@@ -58,7 +58,7 @@ export class EditBet extends React.Component {
     render() {
         return (
             <div>
-                <NavBar />
+                <NavBar loggedIn="loggedIn" />
                 <div className="container">
                     <h1>Edit your bet</h1>
                     <form onSubmit={event => this.editBet(event)}>

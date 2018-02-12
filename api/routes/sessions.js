@@ -48,7 +48,7 @@ router.post('/', jsonParser, (req, res) => {
 
 //Delete the Session
 router.delete('/', (req, res) => {
-    res.status(204).send
+    res.status(204).json({message: 'Session deleted'})
 })
 
 //export the router

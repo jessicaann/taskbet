@@ -115,13 +115,13 @@ export const createNewSessionSuccess = data => ({type: CREATE_NEW_SESSION_SUCCES
 
 //DELETE SESSION
 export const DELETE_SESSION = 'DELETE_SESSION';
-export const deleteSession = dispatch => {
-    dispatch({type: DELETE_USER_ID});
+export const deleteSession = () => dispatch => {
+    dispatch({type: DELETE_SESSION});
     fetch(`${BASE_URL}/sessions`, {
         method: 'DELETE'
     }).then(res => {
-        dispatch({type: DELETE_SESSION_SUCCESS});
-        return res.json();
+        localStorage.clear();
+        dispatch({type: DELETE_SESSION_SUCCESS, res});
     });
 };
 export const DELETE_SESSION_SUCCESS = 'DELETE_SESSION_SUCCESS';

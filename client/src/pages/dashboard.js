@@ -35,7 +35,7 @@ export class Dashboard extends React.Component {
     render() {
         return (
             <div>
-                <NavBar />
+                <NavBar loggedIn="loggedIn" />
                 <div className="container">
                     <h2>Acccepted Bets</h2>
                     <UnorderedList items={this.state.accepted}/>

@@ -30,7 +30,7 @@ export class Login extends React.Component {
     }
     componentWillReceiveProps(nextProps){
         if(nextProps.authToken){
-            this.props.history.push('/stats/59074c7c057aaffaafb0da71');
+            this.props.history.push('/dashboard/59074c7c057aaffaafb0da71');
         }
     }
     render() {
@@ -49,8 +49,8 @@ export class Login extends React.Component {
                     <form className="login-form" onSubmit={event => this.onSubmit(event)}>
                         {error}
                         <div className="center card">
-                            <Input type={'email'}  inputName={'email'} placeholder={'Email'} onChange={event => this.inputChange(event, 'email')} />
-                            <Input type={'password'} inputName= {'password'} placeholder={'Password'} onChange={event => this.inputChange(event, 'password')} />
+                            <Input required="required" type={'email'}  inputName={'email'} placeholder={'Email'} onChange={event => this.inputChange(event, 'email')} />
+                            <Input required="required" type={'password'} inputName= {'password'} placeholder={'Password'} onChange={event => this.inputChange(event, 'password')} />
                             <button className="btn btn-success col-3" type="submit">Login</button>
                         </div>
                     </form>
