@@ -10,11 +10,12 @@ const userSchema = mongoose.Schema({
 userSchema.virtual('fullName').get(function() {
     return `${this.firstName} ${this.lastName}`.trim()
 });
-userSchema.methods.serialize = function(){
+userSchema.methods.serialize = function(token){
     return {
         id: this.id,
         email: this.email,
         fullName: this.fullName,
+        accessToken: token
     };
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router';
 import { connect } from 'react-redux';
 import { createNewUser } from '../actions/usersActions';
 //import components
@@ -11,6 +12,8 @@ export class NewUser extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: null,
+            authToken: null,
             firstName: null,
             lastName: null,
             password: null,
@@ -28,6 +31,12 @@ export class NewUser extends React.Component {
         this.props.dispatch(createNewUser(this.state));
     }
     render() {
+        console.log(this.props.authToken);
+        if(this.props.authToken){
+            return (
+                <Redirect to="/bets" />
+            );
+        }
         return (
             <div className="wrapper">
                 <NavBar />
@@ -38,7 +47,7 @@ export class NewUser extends React.Component {
                         <Input type={'text'} value={this.state.firstName} labelName={'First Name'}  labelCol='3' inputCol='9' inputName={'firstName'} placeholder={'First Name'} onChange={event => this.inputChange(event, 'firstName')}/>     
                         <Input type={'text'} value={this.state.lastName} labelName={'Last Name'}  labelCol='3' inputCol='9' inputName={'lastName'} placeholder={'Last Name'} onChange={event => this.inputChange(event, 'lastName')}/>
                         <Input type={'email'} value={this.state.email} labelName={'Email'}  labelCol='3' inputCol='9' inputName={'email'} placeholder={'Email'} onChange={event => this.inputChange(event, 'email')}/>
-                        <Input type={'text'} value={this.state.password} labelName={'Password'} labelCol='3' inputCol='9' inputName={'password'} placeholder={'Create Password'} onChange={event => this.inputChange(event, 'password')}/>
+                        <Input type={'password'} value={this.state.password} labelName={'Password'} labelCol='3' inputCol='9' inputName={'password'} placeholder={'Create Password'} onChange={event => this.inputChange(event, 'password')}/>
                         <div className="btn-group" role="group">
                             <button className="btn btn-link">Cancel</button>
                             <button className="btn btn-success" type="submit">Create Account</button>
@@ -50,4 +59,11 @@ export class NewUser extends React.Component {
     }
 }
 
-export default connect ()(NewUser);
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        user: state.usersReducer.currentUser,
+        authToken: state.usersReducer.authToken
+    };
+};
+export default connect (mapStateToProps)(NewUser);

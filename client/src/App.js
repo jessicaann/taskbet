@@ -8,7 +8,7 @@ import EditBet  from './pages/editBet';
 import  Dashboard  from './pages/dashboard';
 import Login from './pages/login';
 import Logout from './pages/logout';
-import { NewUser } from './pages/newUser';
+import NewUser  from './pages/newUser';
 
 const App = ({ store }) => (
     <Provider store = {store}>

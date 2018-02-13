@@ -22,7 +22,7 @@ export class NewBet extends React.Component {
             reward: null,
             details: null,
             acceptorEmail: null,
-            challenger: '59074c7c057aaffaafb0da72',
+            challenger: '59074c7c057aaffaafb0da72', //the challenger id should pull from the userReducer authToken or ID
         };
     }
     inputChange(event, name){
@@ -43,8 +43,8 @@ export class NewBet extends React.Component {
     }
     render() {
         return (
-            <div className="wrapper">
-                <NavBar />
+            <div className="wrapper"> 
+                <NavBar loggedIn="loggedIn"/>
                 <div className="container">
                     <h1>Got an unwanted task?</h1>
                     <h5>Bet on it and get 'er done!</h5>

@@ -1,3 +1,5 @@
+var {JWTSECRET} = require('../config');
+var jwt = require('jsonwebtoken');
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -35,8 +37,15 @@ router.post('/', jsonParser, (req, res) => {
               email: req.body.email,
               password: req.body.password
           })
-          .then(
-              user => res.status(201).json(user.serialize()))
+          .then(user => {
+            const payload = {
+                userId: user._id, username: `${user.firstName} ${user.lastName}`
+            }
+            var token = jwt.sign(payload, JWTSECRET, {
+                expiresIn: '1d'
+            })
+            res.status(201).json(user.serialize(token))
+          })                       
           .catch(err => {
               console.error(err);
               res.status(500).json({message: 'Internal server error'});

@@ -3,7 +3,8 @@ import * as actions from '../actions/usersActions';
 const initialState = {
     currentUser: null,
     loading: false,
-    error: ''
+    error: '',
+    authToken: null
 };
 //initial state is just the big variables that your users will be able to see. 
 export const usersReducer = (state=initialState, action) => {
@@ -15,7 +16,8 @@ export const usersReducer = (state=initialState, action) => {
     else if (action.type === actions.CREATE_NEW_USER_SUCCESS) {
         return Object.assign({}, state, {
             loading: false,
-            currentUser: action.data
+            currentUser: action.data,
+            authToken: action.data.accessToken
         });
     }
     else if (action.type === actions.CREATE_NEW_USER_ERROR) {

@@ -15,8 +15,10 @@ export const createNewUser = formData => dispatch => {
             return createNewUserError('There was an error in the request'); 
         }
         return res.json();
-    }).then(data => dispatch(createNewUserSuccess(data)))
-        .catch(err => dispatch(createNewUserError(err)));
+    }).then(data => {
+        localStorage.setItem('id_token', data.accessToken);
+        dispatch(createNewUserSuccess(data));
+    }).catch(err => dispatch(createNewUserError(err)));
 };
 export const CREATE_NEW_USER_SUCCESS = 'CREATE_NEW_USER_SUCCESS';
 export const CREATE_NEW_USER_ERROR = 'CREATE_NEW_USER_ERROR';

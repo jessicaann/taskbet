@@ -30,7 +30,7 @@ export class Login extends React.Component {
     }
     componentWillReceiveProps(nextProps){
         if(nextProps.authToken){
-            this.props.history.push('/dashboard/59074c7c057aaffaafb0da71');
+            this.props.history.push('/dashboard/59074c7c057aaffaafb0da71'); //add a Redirect to dashboard
         }
     }
     render() {

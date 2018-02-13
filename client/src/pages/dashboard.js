@@ -26,7 +26,7 @@ export class Dashboard extends React.Component {
         });
     }
     componentDidMount(){
-        console.log(this.props, this.state)
+        console.log(this.props, this.state);
         const userId = this.props.match.params.id;
         //dispatch get by id action and give it userId
         this.props.dispatch(getStatsId(userId));
