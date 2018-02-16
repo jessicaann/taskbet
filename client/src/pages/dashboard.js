@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getStatsId } from '../actions/statsActions';
+import { getUserId } from '../actions/usersActions';
 import UnorderedList from '../components/unorderedList';
 import Footer from '../components/footer/footer';
 import NavBar from '../components/navbar/navbar';
@@ -13,7 +14,8 @@ export class Dashboard extends React.Component {
             won: [],
             lost: [],
             challenged: [],
-            accepted: []
+            accepted: [],
+            userData: null
         };
     }
     componentWillReceiveProps(nextProps){
@@ -22,14 +24,15 @@ export class Dashboard extends React.Component {
             won: nextProps.stats.won,
             lost: nextProps.stats.lost,
             challenged: nextProps.stats.challenged,
-            accepted: nextProps.stats.accepted
+            accepted: nextProps.stats.accepted,
         });
     }
     componentDidMount(){
         console.log(this.props, this.state);
+        console.log(this.state.userData);
         const userId = this.props.match.params.id;
-        //dispatch get by id action and give it userId
         this.props.dispatch(getStatsId(userId));
+        this.props.dispatch(getUserId(userId));
         console.log(this.props);
     }
     render() {
@@ -37,7 +40,7 @@ export class Dashboard extends React.Component {
             <div>
                 <NavBar loggedIn="loggedIn" />
                 <div className="container">
-                    <h2>Acccepted Bets</h2>
+                    <h2>Accepted Bets</h2>
                     <UnorderedList items={this.state.accepted}/>
                     <h2>Challenged Bets</h2>
                     <UnorderedList items={this.state.challenged}/>
@@ -52,9 +55,10 @@ export class Dashboard extends React.Component {
     }
 }
 const mapStateToProps = state => {
-    console.log(state.statsReducer.betStats);
+    console.log(state);
     return  {
-        stats: state.statsReducer.betStats
+        stats: state.statsReducer.betStats,
+        userData: state.usersReducer.currentUser
     };
 };
 export default connect (mapStateToProps)(Dashboard);

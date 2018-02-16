@@ -11,6 +11,7 @@ export default (props) => {
             <a href="/" className='navbar-brand mr-0 mr-md-2'>
                 <img className="taskbet-logo" src={taskbetLogo} />
             </a>
+            <Link className="mb-3 mb-md-0 ml-md-3" to='/dashboard'>Dashboard</Link>
             <Link className="mb-3 mb-md-0 ml-md-3" to='/logout'>Logout</Link>
         </nav>;
     }
