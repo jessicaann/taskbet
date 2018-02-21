@@ -22,3 +22,11 @@ export const GET_STATS_ID_ERROR = 'GET_STATS_ID_ERROR';
 export const GET_STATS_ID_SUCCESS = 'GET_STATS_ID_SUCCESS';
 export const getStatsIdError = error => ({type: GET_STATS_ID_ERROR, error});
 export const getStatsIdSuccess= data => ({type: GET_STATS_ID_SUCCESS, data});
+
+//create a dashboard action - will have a promise.all that will do a fetch for stats and for users
+//Promise.All([
+    //fetch(//user).
+    //fetch(//stats)
+//]).then(fetchedData){
+    //dispatch({type: Dashboard_REq_Success, fetchedData}).catch(err=> dispatch...)
+//}
