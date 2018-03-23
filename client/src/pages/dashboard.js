@@ -29,10 +29,9 @@ export class Dashboard extends React.Component {
     }
     componentDidMount(){
         console.log(this.props, this.state);
-        console.log(this.state.userData);
         const userId = this.props.match.params.id;
         this.props.dispatch(getStatsId(userId));
-        this.props.dispatch(getUserId(userId));
+        //this.props.dispatch(getUserId(userId));
         console.log(this.props);
     }
     render() {
